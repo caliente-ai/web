@@ -7,8 +7,12 @@
 import sharp from "sharp";
 import { mkdirSync } from "node:fs";
 
-const W = 20000;
-const H = 13000;
+// Browser-safe dimensions. A single canvas/image cannot exceed ~16,384 px per
+// side in any browser, so a true 20,000-px sheet will not render without
+// tiling (DZI) — that's a recorded SCRUM-61 finding. We use the largest
+// browser-safe width that keeps the sheet's ~1.54 aspect ratio.
+const W = 16000;
+const H = 10400;
 
 // seeded RNG so the fixture is repeatable
 function mulberry32(seed) {

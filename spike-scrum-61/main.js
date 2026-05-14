@@ -10,8 +10,10 @@ import OpenSeadragon from "openseadragon";
 import Konva from "konva";
 import { pointInPolygon } from "./hit-test.js";
 
-const IMG_W = 20000;
-const IMG_H = 13000;
+// Must match generate-sheet.mjs. Browser-safe size — a true 20,000-px single
+// image exceeds the ~16,384-px canvas limit (recorded SCRUM-61 finding).
+const IMG_W = 16000;
+const IMG_H = 10400;
 const POLY_COUNT = 500;
 
 // ---- seeded RNG: repeatable 500-polygon set --------------------------------
@@ -52,8 +54,39 @@ const statusEl = document.getElementById("status");
 const hitEl = document.getElementById("hit");
 const hitGraphChk = document.getElementById("hitGraph");
 const cullChk = document.getElementById("cull");
+const hidePolysChk = document.getElementById("hidePolys");
 const benchBtn = document.getElementById("bench");
 const osdEl = document.getElementById("osd");
+
+// ---- on-screen diagnostics (so we don't need DevTools) ---------------------
+const diag = document.createElement("div");
+diag.style.cssText =
+  "margin-top:8px;padding-top:8px;border-top:1px solid #444;color:#9cf;font-size:11px;line-height:1.6;white-space:pre-wrap;";
+document.getElementById("hud").appendChild(diag);
+const diagState = { probe: "testing…", osd: "waiting…", sync: "—" };
+function renderDiag() {
+  diag.textContent =
+    `sheet probe: ${diagState.probe}\n` +
+    `OSD open:    ${diagState.osd}\n` +
+    `sync:        ${diagState.sync}`;
+}
+renderDiag();
+
+// Direct decode probe: can the browser even load a 20000-px JPEG as an <img>?
+const probe = new Image();
+probe.onload = () => {
+  diagState.probe =
+    probe.naturalWidth +
+    "x" +
+    probe.naturalHeight +
+    (probe.naturalWidth === 0 ? "  <-- DECODE FAILED (0 px)" : "  OK");
+  renderDiag();
+};
+probe.onerror = () => {
+  diagState.probe = "ERROR — browser could not load /sheet.jpg";
+  renderDiag();
+};
+probe.src = "/sheet.jpg";
 
 // ---- OpenSeadragon: single high-res JPEG, no DZI (per ticket) --------------
 const osd = OpenSeadragon({
@@ -109,15 +142,36 @@ function syncOverlay() {
 
   if (cullChk.checked) applyCulling();
   layer.batchDraw();
+
+  diagState.sync =
+    "scale=" +
+    scale.toFixed(5) +
+    " origin=(" +
+    origin.x.toFixed(0) +
+    "," +
+    origin.y.toFixed(0) +
+    ")";
+  renderDiag();
 }
 osd.addHandler("update-viewport", syncOverlay);
 osd.addHandler("open", () => {
   statusEl.textContent = "sheet loaded — pan/zoom or run the benchmark";
+  try {
+    const size = osd.world.getItemAt(0).getContentSize();
+    diagState.osd = "loaded, content " + size.x + "x" + size.y;
+  } catch (e) {
+    diagState.osd = "open fired but no world item: " + e.message;
+  }
+  renderDiag();
   resize();
   syncOverlay();
 });
-osd.addHandler("open-failed", () => {
-  statusEl.textContent = "FAILED to load /sheet.jpg — run `npm run gen` first";
+osd.addHandler("open-failed", (event) => {
+  statusEl.textContent = "FAILED to load /sheet.jpg";
+  diagState.osd =
+    "OPEN-FAILED: " + (event && event.message ? event.message : "unknown");
+  renderDiag();
+  console.error("[SCRUM-61] OSD open-failed", event);
 });
 
 // ---- viewport culling (yellow-path mitigation) -----------------------------
@@ -136,6 +190,12 @@ function applyCulling() {
 cullChk.addEventListener("change", () => {
   if (!cullChk.checked) for (const s of shapes) s.visible(true);
   syncOverlay();
+});
+
+// ---- isolate the bottleneck: hide the whole Konva overlay (OSD only) -------
+hidePolysChk.addEventListener("change", () => {
+  layer.visible(!hidePolysChk.checked);
+  layer.batchDraw();
 });
 
 // ---- hit-graph toggle (the core perf variable) -----------------------------
