@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# generated 20K-px fixture — regenerate with `npm run gen`, do not commit
+public/sheet.jpg

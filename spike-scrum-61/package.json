@@ -1,0 +1,21 @@
+{
+  "name": "spike-scrum-61",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SCRUM-61 throwaway perf spike — OpenSeadragon + Konva viewer, 20K-px sheet + 500 polygons. Does not ship.",
+  "scripts": {
+    "gen": "node generate-sheet.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "konva": "^9.3.0",
+    "openseadragon": "^4.1.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "vite": "^6.0.0"
+  }
+}
