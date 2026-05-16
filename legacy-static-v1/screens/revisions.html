@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .canvas-grid {
+            background-image: radial-gradient(circle, #c3c6d7 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .diff-added { border: 2px solid #22c55e; }
+        .diff-removed { border: 2px solid #ef4444; }
+        .diff-modified { border: 2px solid #f59e0b; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c3c6d7; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col h-full overflow-y-auto">
+<div class="p-md flex flex-col gap-xs">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div>
+<h1 class="font-display-sm text-surface-container-lowest text-[18px] leading-tight font-bold">ProEstimator AI</h1>
+<p class="text-on-surface-variant text-[11px]">Precision Construction</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-body-md">Estimates</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md">Library</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant/20">
+<button class="w-full bg-primary py-2 px-md rounded text-on-primary font-bold mb-lg hover:opacity-90 transition-opacity">
+                New Project
+            </button>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md">Support</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-sidebar-width h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-12 bg-surface dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center px-md sticky top-0 z-50">
+<div class="flex items-center gap-lg">
+<span class="font-headline-sm text-on-surface font-semibold">Takeoff Engine</span>
+<div class="h-8 flex items-center bg-surface-container-low border border-outline-variant rounded px-sm gap-sm w-64">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-full" placeholder="Search annotations..." type="text"/>
+</div>
+<nav class="flex gap-md h-full items-center">
+<a class="text-on-surface-variant font-body-sm hover:text-on-surface" href="#">Projects</a>
+<a class="text-on-surface-variant font-body-sm hover:text-on-surface" href="#">Team</a>
+<a class="text-on-surface-variant font-body-sm hover:text-on-surface" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm border-r border-outline-variant pr-md mr-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">history</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">help</span>
+</div>
+<button class="text-primary border border-primary px-sm py-1 rounded font-body-sm hover:bg-primary/5 transition-colors">Export</button>
+<button class="bg-primary text-on-primary px-sm py-1 rounded font-body-sm hover:opacity-90">Invite</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a middle-aged male architect in a clean, brightly lit modern office setting. He is wearing a charcoal blazer over a crisp white shirt, exuding confidence and technical expertise. The background is softly blurred, showing architectural models and digital screens in a high-density, tool-first professional environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTx_lKJsfZZ9F7GDec2D8QYbz_ohJzvAYDdDVbDZ5y-UgauEQfWqrZCOvPp3iIHSY8DtkFX_g7Zm6lmYJ52RnCegpS_edwARukuDg2JmuDtpbDQcr6MSe8rZzjCQu5_irUUnTXcL8uq32AwQUAZ4QIhg0w1hA2ul-Hvjonks6cAdCYXkyvqE-jPJ_MsauAqYfUZE-qpiu-IZDI9PTbaC2x2Onjt9zqX5omFCBTZsvaOkT4YigvUpj1I6HMSHQdFXioBzkOf6VKmTM"/>
+</div>
+</header>
+<!-- Revision Toolbar -->
+<div class="h-12 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between px-md">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">compare</span>
+<span class="font-headline-sm text-[14px]">Revision Comparison</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="text-body-sm text-on-surface-variant">Legend:</span>
+<div class="flex items-center gap-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+<span class="text-body-sm font-label-caps">ADDED</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+<span class="text-body-sm font-label-caps">REMOVED</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+<span class="text-body-sm font-label-caps">MODIFIED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded p-0.5 border border-outline-variant">
+<button class="px-3 py-1 bg-surface-container-lowest rounded shadow-sm text-body-sm font-medium">Split View</button>
+<button class="px-3 py-1 text-on-surface-variant text-body-sm hover:text-on-surface">Overlay</button>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant mx-1"></div>
+<button class="flex items-center gap-xs text-body-sm px-2 py-1 hover:bg-surface-container-high rounded">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+<span>100%</span>
+</button>
+</div>
+</div>
+<!-- Main Workspace -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Tool Palette -->
+<div class="w-toolbar-width border-r border-outline-variant bg-surface flex flex-col items-center py-md gap-lg shrink-0">
+<div class="flex flex-col gap-md">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded group relative">
+<span class="material-symbols-outlined text-on-surface-variant">pan_tool</span>
+<span class="absolute left-10 bg-inverse-surface text-surface-container-lowest text-[10px] px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap z-[60]">Pan (P)</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary-container text-on-primary-container rounded shadow-sm">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded">
+<span class="material-symbols-outlined text-on-surface-variant">straighten</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded">
+<span class="material-symbols-outlined text-on-surface-variant">square_foot</span>
+</button>
+</div>
+<div class="mt-auto flex flex-col gap-md">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded">
+<span class="material-symbols-outlined text-on-surface-variant">layers</span>
+</button>
+</div>
+</div>
+<!-- Two-up Canvas Area -->
+<div class="flex-1 flex overflow-hidden relative bg-surface-container-low canvas-grid">
+<!-- Left Sheet (Rev B) -->
+<div class="flex-1 relative border-r border-outline-variant overflow-hidden">
+<div class="absolute top-md left-md z-10 bg-inverse-surface/80 text-surface-container-lowest px-2 py-1 rounded text-body-sm font-medium flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">history</span>
+                        REV B (May 12, 2024)
+                    </div>
+<div class="w-full h-full p-xl flex items-center justify-center">
+<div class="bg-white shadow-lg w-[80%] h-[90%] border border-outline relative">
+<img class="w-full h-full object-cover opacity-60 grayscale" data-alt="A detailed black and white architectural floor plan of a modern office complex. The blueprint shows intricate wall partitions, door swings, and workstation layouts. A section of the wall in the upper right is highlighted with a subtle red border indicating it is slated for removal or historical record. High-density technical drawing aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZBAdj869mlub6JDqzBHDMecPce5KeTk16jqSjiURspRBom8zrXoQz7S7p5FhL2ViZ5AdBQLmm9qR1lYSjRVq_g8rkvMSOLsFQ633vOKn47VuJlXEdRcsvRJ5zFTShV0b59g7pFKds8_hnO-IEdL0K9HuikYs7rHXsZ_6Q7HwcT6zFxCuHV_2CYQVX71p0yWuFZRlSCrfdNDAcLhjGGQXaP7pOLrSuHd8OKpZza5b8V35ggXz6wWuwkX9HPWpkfxcQ2yEdW6o9WkY"/>
+<!-- Removed Element (Red) -->
+<div class="absolute top-[20%] left-[30%] w-[15%] h-[40%] border-2 border-red-500 bg-red-500/10 flex items-center justify-center">
+<span class="bg-red-600 text-white text-[9px] font-bold px-1 rounded-sm">REMOVED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Splitter Divider -->
+<div class="absolute left-1/2 top-0 bottom-0 w-1 bg-primary cursor-col-resize z-30 flex items-center justify-center group">
+<div class="w-6 h-10 bg-primary rounded-full flex flex-col items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-[16px]">drag_indicator</span>
+</div>
+</div>
+<!-- Right Sheet (Rev C) -->
+<div class="flex-1 relative overflow-hidden">
+<div class="absolute top-md right-md z-10 bg-primary text-on-primary px-2 py-1 rounded text-body-sm font-medium flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">fiber_manual_record</span>
+                        REV C (CURRENT)
+                    </div>
+<div class="w-full h-full p-xl flex items-center justify-center">
+<div class="bg-white shadow-lg w-[80%] h-[90%] border border-outline relative">
+<img class="w-full h-full object-cover" data-alt="A contemporary architectural site plan with sharp, high-contrast black lines on a clean white background. This current version of the document shows updated structural changes including a newly added wall section in green and modified storage units in amber. The lighting is neutral and even, emphasizing precision and technical accuracy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRJnnYf0geflG5cEMqTUM-_0N97ZD53RmCwvNmfqjzGXyfFfSmFW1rhNWg7IhFwYAR0gHanUQfX7mCy2XQXERbsbhg_qXAW79zdZvZzlOcOFiVpwiDNWwrisK2rd1s8Nc2UMLp4aUrWZGQDZvk40RwtMRaJsrGz8HSJAp211L2sYgttv14wTf0fPsilL5inaENXdrzgxdv97LdNiDU3cML_7fD9GtUHXgD8oztJ26ANwep0sCVjevC-ijoq1hsj3B1RsRK4eFuB3A"/>
+<!-- Added Element (Green) -->
+<div class="absolute top-[20%] left-[10%] w-[12%] h-[35%] border-2 border-green-500 bg-green-500/10 flex items-center justify-center">
+<span class="bg-green-600 text-white text-[9px] font-bold px-1 rounded-sm">ADDED</span>
+</div>
+<!-- Modified Element (Amber) -->
+<div class="absolute bottom-[15%] right-[20%] w-[25%] h-[20%] border-2 border-amber-500 bg-amber-500/10 flex items-center justify-center">
+<span class="bg-amber-600 text-white text-[9px] font-bold px-1 rounded-sm">MODIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Properties Panel (Detected Changes) -->
+<aside class="w-[320px] bg-surface border-l border-outline-variant flex flex-col shrink-0">
+<div class="p-md border-b border-outline-variant flex items-center justify-between">
+<h2 class="font-headline-sm text-on-surface">Detected Changes</h2>
+<span class="bg-surface-container-highest px-2 py-0.5 rounded text-data-sm text-on-surface-variant">3 Items</span>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Change Item 1 -->
+<div class="p-md border-b border-outline-variant bg-green-50/30 hover:bg-green-50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-green-700 font-label-caps bg-green-100 px-1.5 py-0.5 rounded">ADDED</span>
+<span class="text-data-sm text-outline">Wall-042</span>
+</div>
+<p class="text-body-md font-medium text-on-surface mb-1">New partition wall in Office 302</p>
+<p class="text-body-sm text-on-surface-variant mb-3">12.5 ft Linear Partition, 5/8" Drywall both sides.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-1.5 rounded font-body-sm font-medium hover:opacity-90">Apply to Takeoff</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Change Item 2 -->
+<div class="p-md border-b border-outline-variant bg-amber-50/30 hover:bg-amber-50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-amber-700 font-label-caps bg-amber-100 px-1.5 py-0.5 rounded">MODIFIED</span>
+<span class="text-data-sm text-outline">Area-109</span>
+</div>
+<p class="text-body-md font-medium text-on-surface mb-1">Server Room Flooring resized</p>
+<p class="text-body-sm text-on-surface-variant mb-1">Was: 140 sq ft</p>
+<p class="text-body-sm text-amber-700 font-medium mb-3">Now: 168 sq ft (+20%)</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary py-1.5 rounded font-body-sm font-medium hover:opacity-90">Update Quantity</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Change Item 3 -->
+<div class="p-md border-b border-outline-variant bg-red-50/30 hover:bg-red-50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-red-700 font-label-caps bg-red-100 px-1.5 py-0.5 rounded">REMOVED</span>
+<span class="text-data-sm text-outline">Door-012</span>
+</div>
+<p class="text-body-md font-medium text-on-surface mb-1">Double-swing door in Corridor B</p>
+<p class="text-body-sm text-on-surface-variant mb-3">Item no longer exists in Revision C.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-error text-on-error py-1.5 rounded font-body-sm font-medium hover:opacity-90">Remove Takeoff</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-low border-t border-outline-variant">
+<button class="w-full bg-inverse-surface text-surface-container-lowest py-2 rounded font-body-md font-bold hover:opacity-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+                        Sync All Changes
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Contextual FAB (Only for high-level dashboard but shown for reference of placement if needed) -->
+<!-- Hidden here as per UX goals for specialized views -->
+<script src="/site-nav.js"></script>
+</body></html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/openseadragon@5.0.0/build/openseadragon/openseadragon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/konva@9.3.16/konva.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 18px;
+        }
+        .drawing-canvas {
+            background-image: 
+                linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+                linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .vertex-handle {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border: 2px solid #0053db;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed overflow-hidden flex h-screen">
+<!-- Predicted SideNavBar (Left Global) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface flex flex-col overflow-y-auto border-r border-outline-variant z-50">
+<div class="p-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<div>
+<div class="font-display-sm text-display-sm font-bold text-surface-container-lowest leading-none">ProEstimator AI</div>
+<div class="font-body-sm text-body-sm text-outline-variant">Precision Construction</div>
+</div>
+</div>
+<nav class="flex-1 px-sm py-md space-y-xs">
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-body-md text-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="straighten" style="font-variation-settings: 'FILL' 1;">straighten</span>
+<span class="font-body-md text-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-body-md text-body-md">Estimates</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto p-sm border-t border-outline-variant/20">
+<button class="w-full bg-primary-container text-on-primary-container px-md py-sm rounded flex items-center justify-center gap-sm font-semibold mb-md">
+<span class="material-symbols-outlined">add</span>
+                New Project
+            </button>
+<div class="space-y-xs">
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:text-on-surface" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Application Shell -->
+<div class="flex-1 ml-sidebar-width flex flex-col">
+<!-- Predicted TopNavBar -->
+<header class="flex justify-between items-center h-12 px-md bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Takeoff Engine</span>
+<nav class="flex gap-md h-full">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface h-full flex items-center" href="#">Projects</a>
+<a class="font-body-sm text-body-sm text-primary border-b-2 border-primary h-full flex items-center" href="#">Sheet Editor</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface h-full flex items-center" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex items-center gap-xs text-on-surface-variant mr-md">
+<span class="material-symbols-outlined p-xs hover:text-on-surface cursor-pointer">notifications</span>
+<span class="material-symbols-outlined p-xs hover:text-on-surface cursor-pointer">history</span>
+<span class="material-symbols-outlined p-xs hover:text-on-surface cursor-pointer">help</span>
+</div>
+<button class="px-sm py-1 border border-outline text-body-sm font-medium hover:bg-surface-variant transition-colors">Export</button>
+<button class="px-sm py-1 bg-primary text-on-primary text-body-sm font-medium rounded hover:bg-primary/90 transition-colors">Invite</button>
+<img class="w-8 h-8 rounded-full ml-sm object-cover" data-alt="A professional male user profile avatar with a neutral expression, wearing a minimalist modern business casual outfit. Soft, directional studio lighting creates a clean professional look consistent with a high-end corporate architectural software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvUFUPCOdqMw13H-wRAlVEGtakO0N3v13-zCcNU3GAL427U6q1_6oqfSNOAFU9rBoTPKlt2-aF3a22hG49JVO10dBCoahtG7Jyz4241vVfkjWG0Mf71M5thyyO-_Vmc-Xfv8jpq70SPdOm5YTwsBYIXy1S1xHbz58Ffe2VxVsXMNVH9iopWQtgVnuHXIdpFFWRsqu5JUV5etl4xZc0Q48bZOYqq26aJ-BC_Etdo77vl0sYM49UHTJKbHyygJcsntInU4pp670jN3o"/>
+</div>
+</header>
+<!-- Three-Column Workspace -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Column 1: Sheet Navigator (240px) -->
+<aside class="w-[240px] border-r border-outline-variant bg-surface flex flex-col">
+<div class="p-sm space-y-sm">
+<div class="relative">
+<select class="w-full bg-surface-container-low border-outline-variant rounded-sm text-body-sm py-xs pl-sm pr-lg appearance-none cursor-pointer">
+<option>Rev C — 2026-05-08</option>
+<option>Rev B — 2026-03-12</option>
+<option>Rev A — 2026-01-05</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 16px;">search</span>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-sm text-body-sm py-xs pl-8 focus:ring-1 focus:ring-primary" placeholder="Search sheets..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="px-sm py-xs bg-surface-container-high font-label-caps text-label-caps text-on-secondary-fixed-variant uppercase tracking-wider">Architectural</div>
+<div class="divide-y divide-outline-variant/30">
+<div class="flex items-center gap-sm px-sm py-sm bg-primary-fixed/30 border-l-2 border-primary cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-green-500"></div>
+<div class="flex-1">
+<div class="text-body-sm font-semibold">A-101</div>
+<div class="text-[10px] text-on-surface-variant">First Floor Plan</div>
+</div>
+</div>
+<div class="flex items-center gap-sm px-sm py-sm hover:bg-surface-container-low cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-1">
+<div class="text-body-sm">A-102</div>
+<div class="text-[10px] text-on-surface-variant">Second Floor Plan</div>
+</div>
+</div>
+</div>
+<div class="px-sm py-xs bg-surface-container-high font-label-caps text-label-caps text-on-secondary-fixed-variant uppercase tracking-wider mt-sm">Structural</div>
+<div class="divide-y divide-outline-variant/30">
+<div class="flex items-center gap-sm px-sm py-sm hover:bg-surface-container-low cursor-pointer">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="flex-1">
+<div class="text-body-sm">S-101</div>
+<div class="text-[10px] text-on-surface-variant">Foundation Plan</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Column 2: Center Canvas -->
+<section class="flex-1 relative bg-surface-container overflow-hidden drawing-canvas">
+<!-- Floating Toolbar -->
+<div class="absolute top-md left-1/2 -translate-x-1/2 bg-inverse-surface text-white px-xs py-xs rounded flex items-center gap-1 z-20 shadow-lg">
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/10 transition-colors" title="Select [V]">
+<span class="material-symbols-outlined">near_me</span>
+<span class="absolute bottom-0 right-0 text-[8px] bg-slate-700 px-[2px] rounded">V</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-white" title="Polygon [P]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pentagon</span>
+<span class="absolute bottom-0 right-0 text-[8px] bg-slate-700 px-[2px] rounded">P</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/10" title="Count [C]">
+<span class="material-symbols-outlined">radio_button_checked</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/10" title="Linear [L]">
+<span class="material-symbols-outlined">straighten</span>
+</button>
+<div class="w-px h-6 bg-slate-600 mx-1"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/10" title="Calibrate [K]">
+<span class="material-symbols-outlined">square_foot</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-white/10" title="Detect [D]">
+<span class="material-symbols-outlined">auto_fix</span>
+</button>
+</div>
+<!-- Real OpenSeadragon viewport + Konva polygon overlay -->
+<div id="osd-viewer" class="absolute inset-0 bg-white"></div>
+<div id="konva-container" class="absolute inset-0 pointer-events-none"></div>
+<div id="cursor-hint" class="absolute top-16 left-1/2 -translate-x-1/2 bg-inverse-surface/90 text-white font-data-sm text-data-sm px-sm py-xs rounded z-30 pointer-events-none transition-opacity">Polygon tool active — click to add vertices, double-click to close</div>
+<!-- Bottom Status Bar -->
+<div class="absolute bottom-0 left-0 right-0 h-8 bg-surface border-t border-outline-variant flex justify-between items-center px-md z-20">
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">square_foot</span>
+<span class="font-data-sm text-data-sm">Scale: 1/4" = 1'-0"</span>
+</div>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-lg">
+<span class="font-data-sm text-data-sm text-on-surface-variant">X: 142.4' Y: 88.2'</span>
+</div>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-lg">
+<span class="font-data-sm text-data-sm">Snap: <span class="text-primary font-bold">ON</span></span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-data-sm text-data-sm text-on-surface-variant">Drawing: Architectural_A101_FirstFloor.pdf</span>
+</div>
+</div>
+<!-- Bottom-Right Pan/Zoom UI -->
+<div class="absolute bottom-12 right-md flex flex-col gap-sm z-20">
+<div class="w-16 h-12 bg-white border border-outline-variant rounded p-xs overflow-hidden">
+<div class="w-full h-full bg-slate-100 relative">
+<div class="absolute w-6 h-4 border border-primary top-2 left-3 bg-primary/10"></div>
+</div>
+</div>
+<div class="flex flex-col bg-white border border-outline-variant rounded">
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container border-b border-outline-variant">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container border-b border-outline-variant">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Column 3: Inspector (320px) -->
+<aside class="w-[320px] border-l border-outline-variant bg-surface flex flex-col">
+<div class="flex border-b border-outline-variant bg-surface-container-low">
+<button class="flex-1 py-sm text-[11px] font-bold uppercase tracking-tight border-b-2 border-primary text-primary">Classifications</button>
+<button class="flex-1 py-sm text-[11px] font-bold uppercase tracking-tight text-on-surface-variant hover:text-on-surface">Properties</button>
+<button class="flex-1 py-sm text-[11px] font-bold uppercase tracking-tight text-on-surface-variant hover:text-on-surface">Chat</button>
+<button class="flex-1 py-sm text-[11px] font-bold uppercase tracking-tight text-on-surface-variant hover:text-on-surface">Audit</button>
+</div>
+<div class="p-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 16px;">search</span>
+<input class="w-full bg-surface-container-low border-outline-variant rounded-sm text-body-sm py-xs pl-8 focus:ring-1 focus:ring-primary" placeholder="Search MasterFormat..." type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- CSI Tree -->
+<div class="px-sm py-xs text-body-sm space-y-xs">
+<!-- Division 03 -->
+<div class="group">
+<div class="flex items-center gap-xs py-1 cursor-pointer hover:bg-surface-container">
+<span class="material-symbols-outlined transition-transform group-open:rotate-90">chevron_right</span>
+<span class="font-bold">03 — Concrete</span>
+</div>
+</div>
+<!-- Division 09 -->
+<div class="space-y-xs">
+<div class="flex items-center gap-xs py-1 cursor-pointer bg-surface-container/50">
+<span class="material-symbols-outlined rotate-90">chevron_right</span>
+<span class="font-bold">09 — Finishes</span>
+</div>
+<div class="ml-6 space-y-1">
+<div class="flex items-center gap-sm p-sm rounded border border-primary bg-primary-fixed/20">
+<div class="w-3 h-3 bg-primary border border-primary"></div>
+<div class="flex-1">
+<div class="text-[11px] font-bold">09 29 00 — Gypsum Board</div>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant bg-surface-container px-1 rounded">12 items</span>
+<span class="font-data-md text-data-md text-primary">1,840 SF</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-sm p-sm rounded border border-outline-variant hover:border-outline transition-colors cursor-pointer">
+<div class="w-3 h-3 bg-amber-500 border border-amber-600"></div>
+<div class="flex-1">
+<div class="text-[11px] font-bold">09 65 00 — Resilient Flooring</div>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant bg-surface-container px-1 rounded">4 items</span>
+<span class="font-data-md text-data-md text-on-surface">324 SF</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-sm p-sm rounded border border-outline-variant hover:border-outline transition-colors cursor-pointer">
+<div class="w-3 h-3 bg-purple-500 border border-purple-600"></div>
+<div class="flex-1">
+<div class="text-[11px] font-bold">09 90 00 — Painting</div>
+<div class="flex justify-between items-center mt-1">
+<span class="text-[10px] text-on-surface-variant bg-surface-container px-1 rounded">28 items</span>
+<span class="font-data-md text-data-md text-on-surface">4,120 SF</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Inspector Footer / Action Bar -->
+<div class="p-sm border-t border-outline-variant bg-surface-container-low flex flex-col gap-sm">
+<div class="flex justify-between text-label-caps text-label-caps uppercase text-on-secondary-fixed-variant">
+<span>Total Measured Area</span>
+<span class="font-data-md text-data-md text-on-surface">6,284 SF</span>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 bg-surface-container-highest text-on-surface font-bold text-[10px] uppercase py-2 hover:bg-outline-variant">Bulk Assign</button>
+<button class="flex-1 bg-primary text-white font-bold text-[10px] uppercase py-2 hover:bg-primary/90">Run AI Analysis</button>
+</div>
+</div>
+</aside>
+</main>
+</div>
+<script src="/editor-canvas.js"></script>
+<script src="/site-nav.js"></script>
+</body></html>

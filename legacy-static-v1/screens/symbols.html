@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        /* Custom scrollbar for high-density UI */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c3c6d7;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #737686;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed">
+<!-- Global Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface flex flex-col overflow-y-auto border-r border-outline-variant z-50">
+<div class="p-md">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-8 h-8 bg-surface-container-lowest flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="architecture">architecture</span>
+</div>
+<div>
+<h1 class="font-display-sm text-[16px] leading-tight text-surface-container-lowest">ProEstimator AI</h1>
+<p class="font-body-sm text-outline-variant">Precision Construction</p>
+</div>
+</div>
+<nav class="space-y-base">
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+<span class="font-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-body-md">Estimates</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant/20">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-2 rounded mb-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                New Project
+            </button>
+<nav class="space-y-base">
+<a class="flex items-center gap-sm px-sm py-1.5 rounded text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm">Settings</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-1.5 rounded text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-sm">Support</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="ml-sidebar-width h-screen flex flex-col relative overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center h-12 px-md border-b border-outline-variant bg-surface shrink-0">
+<div class="flex items-center gap-lg">
+<h2 class="font-headline-sm text-on-surface">Takeoff Engine</h2>
+<div class="flex items-center gap-md">
+<a class="font-body-sm text-on-surface-variant hover:text-on-surface border-b-2 border-transparent pb-1" href="#">Projects</a>
+<a class="font-body-sm text-primary border-b-2 border-primary pb-1" href="#">Team</a>
+<a class="font-body-sm text-on-surface-variant hover:text-on-surface border-b-2 border-transparent pb-1" href="#">Billing</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm border-r border-outline-variant pr-md mr-md">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer" data-icon="history">history</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer" data-icon="help">help</span>
+</div>
+<button class="px-3 py-1 text-on-surface-variant border border-outline-variant rounded font-body-sm hover:bg-surface-container-low transition-colors">Export</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded font-body-sm hover:opacity-90 transition-opacity">Invite</button>
+</div>
+</header>
+<!-- Tool Palette (Left Fixed) -->
+<div class="absolute left-0 top-12 bottom-0 w-toolbar-width bg-surface border-r border-outline-variant flex flex-col items-center py-md gap-md z-10">
+<div class="w-8 h-8 flex items-center justify-center bg-secondary-container text-on-secondary-container rounded cursor-pointer" title="Select (V)">
+<span class="material-symbols-outlined text-[20px]" data-icon="near_me">near_me</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer" title="Line (L)">
+<span class="material-symbols-outlined text-[20px]" data-icon="horizontal_rule">horizontal_rule</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer" title="Area (A)">
+<span class="material-symbols-outlined text-[20px]" data-icon="square_foot">square_foot</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer" title="Symbol Search (S)">
+<span class="material-symbols-outlined text-[20px]" data-icon="search_check">search_check</span>
+</div>
+<div class="mt-auto flex flex-col gap-md">
+<div class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span>
+</div>
+</div>
+</div>
+<!-- Sheet Viewer Background (Simulation) -->
+<div class="flex-1 bg-surface-container ml-toolbar-width relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-30 grayscale contrast-125" data-alt="A highly detailed technical architectural blueprint for a large commercial building structure, featuring complex line work, dimensional annotations, and structural schematics. The drawing is presented in a professional drafting style with crisp black lines on a slightly off-white, high-legibility digital canvas, conveying precision and engineering excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJi0-T4ILsiGMLS7pweKa6Nyz7GcHqST2Pawht0mvRxMdi66ONZ84NlZ_yTlQ9SzrP6VeZv8_m2lC2i2Lb5L2pvG7I5pCV9oDLdEpCWqwnhjZNzsjpRGpaZS24yd5W9xGgQWN41V4NtynC6dvmE-iynr0zOufKRbeamffmGgk-GdR_fbJWSaJkLj6AYSapdf41DPPZMJCMnqk5mWp0-DF_zt9cpZGul-uksDrdmH9eYxslf7xAHrPpRLWNr-O45sRqxllZcYQv0uM"/>
+<!-- Overlay Mask -->
+<div class="absolute inset-0 bg-on-background/10 backdrop-blur-[1px]"></div>
+<!-- SEARCH RESULTS OVERLAY -->
+<div class="absolute inset-x-md inset-y-lg flex items-center justify-center">
+<div class="w-full max-w-5xl h-full bg-surface-container-lowest border border-outline-variant shadow-2xl rounded-xl flex flex-col overflow-hidden">
+<!-- Header -->
+<div class="px-lg py-md border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-primary-fixed-dim flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-primary" data-icon="door_open">door_open</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-on-surface">84 matches across 12 sheets — 71 high confidence</h3>
+<p class="font-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                    Searching for: 3068 Standard Swing Door Symbol
+                                </p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-1.5 font-label-caps text-on-surface-variant bg-surface-container hover:bg-surface-container-high transition-colors rounded">IGNORE ALL</button>
+<button class="px-md py-1.5 font-label-caps bg-primary text-on-primary rounded">ACCEPT ALL HIGH CONFIDENCE</button>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-on-surface ml-md" data-icon="close">close</span>
+</div>
+</div>
+<!-- Scrollable Results Grid -->
+<div class="flex-1 overflow-y-auto p-lg bg-surface">
+<!-- Group: Sheet A-101 -->
+<section class="mb-xl">
+<div class="flex items-center gap-sm mb-md pb-xs border-b border-outline-variant">
+<span class="font-data-md text-on-surface-variant">A-101</span>
+<span class="text-outline-variant text-[12px]">•</span>
+<span class="font-body-sm font-semibold text-on-surface">First Floor Plan - Main Lobby</span>
+<span class="ml-auto font-data-sm text-on-surface-variant">12 Matches</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-md">
+<!-- Match Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 scale-[2]" data-alt="A macro close-up view of a technical architectural drawing showing a specific door swing symbol. The image is focused and high-contrast, highlighting the precise geometry of the 90-degree arc and straight jamb lines against a sterile white background. The visual style is strictly technical and utilitarian, consistent with CAD software output." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfKbnwaSMXpH4FLTRNXikSg7OyA5fAt1mGoyXaukwNo6r-vlf-39tJXy3EhY_G-oyEv4fr9VAOqG5ZdP3cM7W8KVLOA7-4q1g1RyudovQF7TsTrLym3rFmnfJUOIWw1Tzw045poEajQgWp7S4vT-Pno28o08HPUw16xF1vI5sm9Lc3unxQ5ryTiWq2BUWpwuR-b1QucLlBIb-qMj7xShY77wdfvxsiRAZlwpX8NgOOXMuw8OJAonclpLMmfgkTtsceXf4MakoLT3Y"/>
+<div class="absolute inset-0 border-2 border-primary/40 pointer-events-none"></div>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">98%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-error-container hover:text-on-error-container rounded transition-colors" title="Reject">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-surface-container-highest rounded transition-colors" title="Review Later">
+<span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span>
+</button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary hover:bg-primary hover:text-on-primary rounded transition-colors" title="Accept">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</button>
+</div>
+</div>
+<!-- Match Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 scale-[1.8]" data-alt="Technical CAD detail of a door opening in a floor plan view. Crisp black lines indicate the door frame and the swing direction arc. The image is zoomed in significantly to show pixel-perfect alignment of the architectural symbols, presented in a high-density, professional engineering style with no distracting elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOvs0Chbf0nNNibo6EOtPanMffRet9Uii4K_qksKdTQGH1P32CY-1DUbpYuyETh0bO0jbx8o9cnOVXJ_sHlfUrEQ_p1oZi2ZBaWtSntHXQHZ--vw38xJaq2mbLWY2OzUeEXpl4wf3PXXz5nj22DAZu9tg4xhSQRBwNujELfE7bJcLWpli0CwHItIct5nHhAtAp7gPsaXCGisZKf9ych2XYnSoKn_2uMMqRWvHumQNfpimiRd2cHc5wAl7wHJW9jEMZWGI6CPc3VI0"/>
+<div class="absolute inset-0 border-2 border-primary/40 pointer-events-none"></div>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">96%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-error-container hover:text-on-error-container rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary hover:bg-primary hover:text-on-primary rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+<!-- Match Item 3 (Low Confidence) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-tertiary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 rotate-45 scale-[1.5]" data-alt="A close-up of a cluttered architectural plan where several symbols overlap, creating a complex visual pattern. One specific door symbol is partially obscured by structural lines. The aesthetic is monochromatic and technical, mimicking the focused viewport of a symbol-detection algorithm within construction estimating software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4abz4WrGeLYFlxs0VRz-QpGGuSx9uhRA-1krvvvoQOcLfC7-Lagc70jkAaCiqx-8Qm85p9fgck6Sv2O6853kwCI8MXQcS1yo4quPMZQ4EiYrRYxRctbXul5MIfCpPxkblNhLWq5cY3Tpo7jITrk-xfwN14Djc7AqLTusS8DCE_kZrK4ATT52I6Fzi3dxS6c0X82XNya6OFxmyFsxfeYHUZvvbNvzRW-T6zkHaqCUWK46fVIzvKmi0ehvWltYosa0nHBHqvhKNEok"/>
+<div class="absolute inset-0 border-2 border-tertiary/40 pointer-events-none"></div>
+<div class="absolute top-1 left-1 px-1.5 bg-tertiary text-on-tertiary font-data-sm text-[10px] rounded">64%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-error-container hover:text-on-error-container rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container hover:bg-surface-container-highest rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-tertiary-fixed text-on-tertiary-fixed-variant hover:bg-tertiary hover:text-on-tertiary rounded transition-colors"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+<!-- Repeat items for visual density -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<div class="w-full h-full flex items-center justify-center bg-surface-container-highest border-2 border-primary/20">
+<span class="material-symbols-outlined text-outline-variant text-[48px]" data-icon="door_front">door_front</span>
+</div>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">94%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary rounded"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<div class="w-full h-full flex items-center justify-center bg-surface-container-highest border-2 border-primary/20">
+<span class="material-symbols-outlined text-outline-variant text-[48px]" data-icon="door_front">door_front</span>
+</div>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">92%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary rounded"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Sheet A-102 -->
+<section class="mb-xl">
+<div class="flex items-center gap-sm mb-md pb-xs border-b border-outline-variant">
+<span class="font-data-md text-on-surface-variant">A-102</span>
+<span class="text-outline-variant text-[12px]">•</span>
+<span class="font-body-sm font-semibold text-on-surface">Second Floor Plan - Office Wing</span>
+<span class="ml-auto font-data-sm text-on-surface-variant">8 Matches</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-md">
+<!-- Match Item 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-60 scale-[1.2]" data-alt="Detailed view of a architectural plan's annotation layer. The image shows several overlapping symbols including walls, dimensions, and a clear door swing symbol. The lines are rendered in high-definition black and white, giving a crisp, professional feeling to the CAD environment representation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjV4GPxOKchIc0xiwdwn4-F63IKA9GjLqlE8D4h2G93iKEIqpZg7O_rmodqoB3iaqafgAbqP4VTY8DhpEZZKvs9r-dlKCVMSgUV56oTmuwP0MuL0wulq5iICt47oQJC-1fdxscB2r87LbLdMqsJb1qYzlJ4rM7bAcXIE3L1oHsTmwILcqKhLbhAUQGqdg40CUQSO8DAmQF3dHmgXCwOy7GS5Gg4e3b_QjQiDnty-S3HLufGU25PJPdJmMBN27bZv39XX9Hc__cc34"/>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">95%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary rounded"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+<!-- Match Item 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded group hover:border-primary transition-colors overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<div class="w-full h-full flex items-center justify-center bg-surface-container-highest border-2 border-primary/20">
+<span class="material-symbols-outlined text-outline-variant text-[48px]" data-icon="door_front">door_front</span>
+</div>
+<div class="absolute top-1 left-1 px-1.5 bg-primary text-on-primary font-data-sm text-[10px] rounded">91%</div>
+</div>
+<div class="p-xs flex justify-between items-center gap-xs">
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="close">close</span></button>
+<button class="flex-1 py-1 flex justify-center bg-surface-container rounded"><span class="material-symbols-outlined text-[18px]" data-icon="question_mark">question_mark</span></button>
+<button class="flex-1 py-1 flex justify-center bg-primary-fixed-dim text-primary rounded"><span class="material-symbols-outlined text-[18px]" data-icon="check">check</span></button>
+</div>
+</div>
+<!-- Match Item 6 (Accepted State Simulation) -->
+<div class="bg-primary-fixed border border-primary rounded overflow-hidden">
+<div class="aspect-square relative bg-surface-container-low overflow-hidden">
+<div class="w-full h-full flex items-center justify-center bg-white border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-[48px]" data-icon="door_front">door_front</span>
+</div>
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<div class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</div>
+</div>
+</div>
+<div class="p-xs bg-primary flex justify-center">
+<span class="font-label-caps text-on-primary text-[10px]">VERIFIED</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer / Summary -->
+<div class="px-lg py-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center shrink-0">
+<div class="flex gap-lg">
+<div class="flex items-center gap-xs">
+<span class="font-data-md text-primary">71</span>
+<span class="font-body-sm text-on-surface-variant">Confirmed</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-data-md text-tertiary">13</span>
+<span class="font-body-sm text-on-surface-variant">Pending Review</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-data-md text-error">0</span>
+<span class="font-body-sm text-on-surface-variant">Rejected</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-body-sm text-on-surface-variant italic">Press <kbd class="px-1.5 py-0.5 border border-outline-variant bg-surface-container rounded font-data-sm text-[10px]">ESC</kbd> to exit selection mode</span>
+<button class="px-xl py-2 bg-primary text-on-primary font-semibold rounded hover:opacity-90 transition-opacity">FINALIZE TAKEOFF</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Properties Panel (Right Collapsed Simulation) -->
+<div class="absolute right-0 top-12 bottom-0 w-8 bg-surface-container-high border-l border-outline-variant flex flex-col items-center py-md gap-md z-10 cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] rotate-90" data-icon="double_arrow">double_arrow</span>
+<div class="vertical-text font-label-caps text-on-surface-variant tracking-widest whitespace-nowrap" style="writing-mode: vertical-rl;">PROPERTIES</div>
+</div>
+</main>
+<!-- FAB (Suppressed contextually as per rules for Details/Focused pages, but included if this were a home dashboard) -->
+<!-- <button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center hover:scale-105 transition-transform z-50">
+        <span class="material-symbols-outlined" data-icon="add">add</span>
+    </button> -->
+<script src="/site-nav.js"></script>
+</body></html>

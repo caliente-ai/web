@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Claude Code per-user workspace state (personal, not for sharing)
+.claude/
+
+# IDE
+.idea/
+.vscode/

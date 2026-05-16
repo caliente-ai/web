@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #f2f4f6 25%, #e6e8ea 50%, #f2f4f6 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface text-on-surface-variant flex flex-col border-r border-outline-variant z-50">
+<!-- Header & Org Switcher -->
+<div class="p-md flex items-center gap-sm">
+<img alt="Organization Logo" class="w-8 h-8 rounded bg-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbAlnEWO_X-ykp9AurHjIWJe_sCP3E-MSIylXhZW9DcL-OhSRWM9CNIcMeMnjzt9YbXTxVt3vrnCUt-LlRwoxvnIdqHPoHAmJcaPv-6BODehLSu3mMwPCMYV6oxzoJXqgAM-MB0pbZQw0Okvh2FJl_n0p5fokisz-Kh2wnhj43BYYCjbkkMI9o7LNEbT1u1o1WFPHxDBcKw9Rs-8CrIqw_AT5uda6wIzrALMHjXeA9mql5hrCwp0uj2RPzl7rBgkXtq6LwN1nyj50"/>
+<div class="flex flex-col flex-1 overflow-hidden">
+<span class="font-display-sm text-display-sm font-bold text-surface-container-lowest truncate">ProEstimator AI</span>
+<div class="flex items-center gap-xs cursor-pointer hover:bg-on-secondary-fixed-variant p-xs -ml-xs rounded transition-colors">
+<span class="font-body-sm text-body-sm text-primary-fixed-dim truncate">Buildcorp Inc</span>
+<span class="material-symbols-outlined text-primary-fixed-dim text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Navigation Items -->
+<nav class="flex-1 px-sm py-md space-y-xs overflow-y-auto">
+<!-- Active Tab: Dashboard (Mapping to Projects) -->
+<a class="flex items-center gap-md px-sm py-2 text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-body-md text-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="straighten">straighten</span>
+<span class="font-body-md text-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-body-md text-body-md">Estimates</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-body-md text-body-md">Library</span>
+</a>
+<div class="pt-lg mt-lg border-t border-on-secondary-fixed-variant space-y-xs">
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-md px-sm py-2 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed rounded transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</div>
+</nav>
+<div class="p-md">
+<button class="w-full bg-primary text-on-primary py-2 px-md rounded font-body-md flex items-center justify-center gap-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<!-- TopNavBar & Main Content -->
+<main class="flex-1 ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="h-12 flex items-center justify-between px-md bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md flex-1">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Projects</span>
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded h-8 pl-9 pr-md font-body-sm text-body-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none" placeholder="Search projects..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer">history</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-on-surface cursor-pointer">help</span>
+</div>
+<div class="h-6 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-sm">
+<button class="px-sm h-8 border border-outline-variant rounded font-body-sm text-body-sm hover:bg-surface-container-low transition-colors">Export</button>
+<button class="px-sm h-8 bg-primary text-on-primary rounded font-body-sm text-body-sm flex items-center gap-xs hover:opacity-90 transition-opacity">
+                        Invite
+                    </button>
+<img alt="User Avatar" class="w-7 h-7 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMzm2qC_HqMBQMJ0thWlF6-GZYkcu_fHNzZr2rCWdDQFf8Mz6CUBkJayZNaSjzewAxlPojkMWblex6UWeswwa88ExyrHndAvBW3Bw0n07DH3AVuzwKRowJh8K6t6vOj69RmT-bupt3JWlFPnquHXnNbN3LAKemqbNcZoQhYiZvMq47cqG0dR2ScBgqTwYc_XqzDc1TBscrB4Wy_vdhNemDeN93GgFU4yZ0RN3U4mZGCnW0LTP0RLQl2B7foqM4ERxNNea9gAAyFMg"/>
+</div>
+</div>
+</header>
+<!-- Sub Header: Controls -->
+<div class="px-md py-sm flex items-center justify-between bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<button class="px-sm py-1 bg-secondary-container text-on-secondary-fixed-variant rounded-full font-label-caps text-label-caps border border-transparent">ACTIVE</button>
+<button class="px-sm py-1 text-on-surface-variant rounded-full font-label-caps text-label-caps border border-outline-variant hover:bg-surface-container-low">ARCHIVED</button>
+<button class="px-sm py-1 text-on-surface-variant rounded-full font-label-caps text-label-caps border border-outline-variant hover:bg-surface-container-low">MINE</button>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Shortcuts: </span>
+<kbd class="border border-outline-variant bg-surface-container-low px-1.5 rounded font-data-sm text-data-sm shadow-sm">N</kbd>
+<span class="font-body-sm text-body-sm">New Project</span>
+</div>
+</div>
+</div>
+<!-- Dashboard Body -->
+<div class="flex-1 overflow-y-auto p-md bg-surface-container-low">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-md">
+<!-- Project Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:border-primary transition-colors cursor-pointer">
+<div class="relative h-32 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 transition-opacity" data-alt="A detailed black and white architectural floor plan displayed on a digital screen. The composition is clean and technical, showing structural walls, window placements, and dimension lines. Soft overhead lighting casts a gentle glow, reflecting a professional design studio environment with a crisp, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6fP--9Eh52vh9iw5olLtgZ57C_In0IItxCweNA6qb4r2HLHgPTnft59iwZ-pAXS8zoe8sXpT0WVrXgU-9A0ZGNjIbST3Qam3QFaDvRQ15Iyx64F8NSZxgByo0pL1BOxWGd-yjvOduxA8cYKeLE_BNPMNAPTMt9g8TCPu-bUCaNuONGi0NzYlDmEm6eWO43HXDv91L902QBcA4dyy_m6Cdc4k2Gy-3DTOvirSfiWktdMsMF0l6S51yiHADI74t4CaZHboUa5WadTg"/>
+<div class="absolute bottom-2 right-2 bg-inverse-surface/80 text-white px-2 py-0.5 rounded text-[10px] font-label-caps">PREVIEW</div>
+</div>
+<div class="p-sm flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Skyline Apartments</h3>
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-5 h-5 rounded-full border border-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlAZ1IMZMS1B1KnpNR2-mBsrv81CVbx-d9GORTXgag2pyJyE2_ZpCZ4lM3x9omBZrR50PYZpfJrCgIKI9GfRFb00W-5hfLmiPtEftRL0HUGgg3eKCPAa2xzfs-L2wzhZzLgK46Qbvw1axx4WuCqse8T8RlFRJEYeDjZPprgsHjyuqQAqxr_KgvM7mUK5daYC4WSa9ytNHFBBDatQsUqrxDH7hu20t1WEX7BUXIa9NYkp4KY6w5EGhFGRmih-S5HvSOvVFRB9NgO8E"/>
+<img alt="User 2" class="w-5 h-5 rounded-full border border-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1KcH1MbThyF0l_GaCK7sH-xJmy0-s8OE9xrdqMzqQjKkFoLrLKYxokJp4BDjJhg4Zn9tlPck3Sp87R66_AVZdQ3gZJ-sxE6hHH_ahoPyu4fL2jE-cYV7ZuWrInEDns1RT_-mXXLEXyKM2PeoGxWopcnIffRHb64UpiMAHEtoi1n4tP3RuG81ixNuOmzPqXTz76SF4ylwWVKf0YxBHi8cpyyJ0GeFnrfCtANbG2g_GEhlSwGlWVUP6XRpdyMwvpvuA5zR_UpeLBoQ"/>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            123 Broadway, NY
+                        </p>
+<div class="mt-sm pt-sm border-t border-outline-variant/30 flex gap-xs">
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">layers</span> 142 Sheets
+                            </div>
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">architecture</span> 1,240 Items
+                            </div>
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">history</span> 3 Revs
+                            </div>
+</div>
+<div class="mt-auto pt-sm flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant italic">
+<span>Last modified 2h ago</span>
+<span class="material-symbols-outlined text-[16px] group-hover:text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:border-primary transition-colors cursor-pointer">
+<div class="relative h-32 bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 transition-opacity" data-alt="A technical foundation plan featuring intricate rebar detailing and concrete slab annotations. The drawing is presented in high-contrast black on a pale ivory background, mimicking high-quality blueprint paper. The scene is well-lit by cool daylight, emphasizing the precision and accuracy required in structural engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7zB6n-QWa2aF6yntGR8y3r2QNJoNkOs28NSIPtz0TH3fWSYA2CMfBWVed0pvHjK_ej9g7L-OKkbhPcmKXDsgcHqUkoZ5sVElsT_xiyOSJD8SdWGzw63-g9CjTszRtB_19I4QfmBpMF75rRcMDbH8pZxw8bkuivs8P_qySEtOd5uFMmf_iqwbtytXG-KHrnWlbY0slSKoNzUKl2AyIZ3RbArRAVOgvQM-7-yByEwfSUTVxQyqt1aS0RvZpJYBWUI-WBSgTW0Y0mWc"/>
+</div>
+<div class="p-sm flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Harbor Bridge Phase 2</h3>
+<div class="flex -space-x-2">
+<img alt="User 3" class="w-5 h-5 rounded-full border border-surface-container-lowest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa6YJ0TJVnYba2sxGU1KIWVgpdunKV16ef1eKfRGw5zQZIk4n1Tz6bCUBrrpipAx3pUtIfwWtDLOb1OLkCzeL4Ftb_L0axFxucPRwi5nZYeTAl02CBmQz5CGbCW6JgckebKzefW3oODUZk0QqcoWs5pZXJfLWMZ2q0_3rKYUHhFjoS1IsqGzvc6qKFHLqiJQnrr0rM18lyOrTZadUz3HoUk94NRAfN501N92ueAzvu0CprtFyiGHLrOd7_-l98zUrjzyGZHFz0VuQ"/>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Pier 4, SF
+                        </p>
+<div class="mt-sm pt-sm border-t border-outline-variant/30 flex gap-xs">
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">layers</span> 68 Sheets
+                            </div>
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">architecture</span> 450 Items
+                            </div>
+<div class="bg-surface-container-high px-1.5 py-0.5 rounded font-data-sm text-data-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">history</span> 1 Rev
+                            </div>
+</div>
+<div class="mt-auto pt-sm flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant italic">
+<span>Last modified 5h ago</span>
+<span class="material-symbols-outlined text-[16px] group-hover:text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Project Card 3: Skeleton State -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col opacity-70">
+<div class="h-32 skeleton"></div>
+<div class="p-sm space-y-sm">
+<div class="h-4 w-3/4 skeleton rounded"></div>
+<div class="h-3 w-1/2 skeleton rounded"></div>
+<div class="pt-sm border-t border-outline-variant/30 flex gap-xs">
+<div class="h-5 w-16 skeleton rounded"></div>
+<div class="h-5 w-16 skeleton rounded"></div>
+</div>
+<div class="h-3 w-1/3 skeleton rounded mt-auto"></div>
+</div>
+</div>
+<!-- Add New Empty State Card -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg flex flex-col items-center justify-center p-xl text-center group hover:bg-surface-container transition-colors cursor-pointer min-h-[240px]">
+<div class="relative w-20 h-24 mb-md">
+<div class="absolute inset-0 border border-outline-variant transform rotate-3 group-hover:rotate-0 transition-transform"></div>
+<div class="absolute inset-0 border border-outline-variant bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-outline-variant">upload_file</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Drop a PDF here or <span class="text-primary font-bold">click to upload</span></p>
+<p class="font-body-sm text-body-sm text-outline mt-xs">Support for PDF, DWG, and JPEG files up to 50MB.</p>
+</div>
+</div>
+<!-- Empty State Section at Bottom -->
+<div class="mt-xl py-xl border-t border-outline-variant/30 text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant uppercase tracking-widest">End of project list</p>
+</div>
+</div>
+</main>
+<!-- Toast Notification (Success) -->
+<div class="fixed bottom-lg right-lg z-50 flex items-center gap-md px-md py-3 bg-inverse-surface text-surface-container-lowest rounded-lg shadow-xl border border-outline-variant/20 animate-in fade-in slide-in-from-bottom-5">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<p class="font-body-md text-body-md">Project <span class="font-bold">'Skyline Apartments'</span> synced successfully</p>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-white transition-colors">close</button>
+</div>
+<script src="/site-nav.js"></script>
+</body></html>

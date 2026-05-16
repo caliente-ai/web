@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "primary-container": "#2563eb",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "outline": "#737686",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-container": "#5c647a",
+                    "surface-container-high": "#e6e8ea",
+                    "outline-variant": "#c3c6d7",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-surface-variant": "#434655",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#dae2fd",
+                    "surface": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#943700",
+                    "secondary-container": "#dae2fd",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "background": "#f7f9fb",
+                    "on-primary-container": "#eeefff",
+                    "primary": "#004ac6",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary": "#565e74"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sidebar-width": "240px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "toolbar-width": "48px",
+                    "md": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 1.25rem;
+        }
+        .sidebar-item-active {
+            color: #b4c5ff; /* text-primary-fixed-dim */
+            font-weight: 700;
+            background-color: #3f465c; /* bg-on-secondary-fixed-variant */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+<!-- SideNavBar Component -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col overflow-y-auto z-50">
+<!-- Brand Header -->
+<div class="px-md py-lg">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display-sm text-display-sm font-bold text-surface-container-lowest leading-none">ProEstimator AI</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant opacity-70">Precision Construction</span>
+</div>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 px-sm space-y-xs">
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md text-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-body-md text-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 sidebar-item-active" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-body-md text-body-md">Estimates</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md text-body-md">Library</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="px-md py-md">
+<button class="w-full bg-primary-container text-on-primary-container font-semibold py-sm rounded flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-body-md text-body-md">New Project</span>
+</button>
+</div>
+<!-- Footer Nav -->
+<div class="mt-auto px-sm pb-md border-t border-outline-variant pt-md space-y-xs">
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded transition-colors duration-150 hover:bg-on-secondary-fixed-variant hover:text-primary-fixed text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-sidebar-width flex-1 flex flex-col bg-surface min-h-screen">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-surface-dim border-b border-outline-variant h-12 flex justify-between items-center px-md">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Audit Log</span>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-sm">
+<span class="font-body-sm text-body-sm text-primary border-b-2 border-primary pb-1 cursor-pointer">Projects</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-opacity duration-100 cursor-pointer">Team</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-opacity duration-100 cursor-pointer">Billing</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">history</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-on-surface">help</span>
+</div>
+<div class="flex items-center gap-xs">
+<button class="bg-primary text-on-primary px-sm py-1 rounded font-body-sm text-body-sm hover:opacity-90">Invite</button>
+<button class="border border-outline-variant text-on-surface px-sm py-1 rounded font-body-sm text-body-sm hover:bg-surface-container">Export</button>
+</div>
+<img alt="User Avatar" class="w-6 h-6 rounded-full border border-outline-variant" data-alt="A professional headshot of a female construction project manager with a bright, focused expression. She is wearing a modern workspace attire in a high-key, minimalist office setting with soft, neutral lighting and a palette of slate and white. The overall style is clean, corporate, and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzXOaOlJBUUHFe3-O6fn29Hdyqvn-CFU5tRAt4GEB6BP6yDgWlBAx3oZoFF0ZaE-FEKq9ZJjz4aaWdQlQlOGSbcdKWJPlactdM8Za6Avooya3Lgu-51VJixWpcYXeQCkURSLLdJ3_dc3mKKwG3pOCs47ceKIrvnz5OyLBO4_8CGEW8KrL64AYn_DfSfbPaBBecwiOOdI__POMJVt7ZN3F_-V3715RhTyWY33PrVXnJoj5MdreMySsXWF4sVNRe2Ki9tdoG6L71JwM"/>
+</div>
+</header>
+<!-- Audit Log View Content -->
+<div class="flex-1 p-md flex flex-col gap-md">
+<!-- Filter Bar -->
+<div class="bg-surface-container-low p-sm rounded-lg border border-outline-variant flex flex-wrap items-center gap-md">
+<div class="flex items-center gap-sm border border-outline-variant bg-surface rounded px-sm py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Actor:</span>
+<span class="font-body-sm text-body-sm font-semibold">All Members</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="flex items-center gap-sm border border-outline-variant bg-surface rounded px-sm py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">category</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Action:</span>
+<span class="font-body-sm text-body-sm font-semibold">All Actions</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="flex items-center gap-sm border border-outline-variant bg-surface rounded px-sm py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">calendar_today</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Date Range:</span>
+<span class="font-body-sm text-body-sm font-semibold">Last 7 Days</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="flex items-center gap-sm border border-outline-variant bg-surface rounded px-sm py-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">folder</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Project:</span>
+<span class="font-body-sm text-body-sm font-semibold">Central Plaza Dev</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="ml-auto flex gap-xs">
+<div class="relative">
+<input class="bg-surface border border-outline-variant rounded px-sm py-1 text-body-sm w-64 focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search logs..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-[16px] text-on-surface-variant">search</span>
+</div>
+</div>
+</div>
+<!-- Log Timeline Container -->
+<div class="flex-1 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden flex flex-col shadow-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm bg-surface-container-high border-b border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Actor</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Action</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Target Preview</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Timestamp</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Data</span>
+</div>
+<!-- Log Rows -->
+<div class="flex-1 overflow-y-auto">
+<!-- Row 1 -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm border-b border-outline-variant hover:bg-surface-container-low items-center transition-colors">
+<div class="flex items-center gap-sm">
+<img alt="Sarah J." class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A portrait of a professional woman with glasses and dark hair, Sarah J, looking focused. She is situated in a bright, modern architectural studio. The lighting is crisp and cool, highlighting the technical precision of her environment. The aesthetic is clean and high-density, typical of a top-tier construction management platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx051B6vdeXA2dJPauuceREWWqLs5zk0rm4ZDcxKpBjvzmvN8zK5N4RQ4yXrhe2g92G9OzdlYrNWGRz9314_3pXxmXqtnyGqhK079SCLhsdsz4h4bFBnt_o-5HNd9UNPQVXUvuTIg4ThUHy5kx_UeO80dO6Ye1NPWffHXmfZLTCNGzA1fVYuc_CyoamRclt2AZsLtqmOgTe5S7IMv5D79QAN-PRviwX-1Ur0HsjrQu8tVZFWpjpGSlYeC96O218X-L8aYocRJrdSQ"/>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Sarah J.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Senior Estimator</span>
+</div>
+</div>
+<div>
+<span class="bg-primary-container/10 text-primary-container px-sm py-0.5 rounded-full font-label-caps text-label-caps">CLASSIFIED</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium">Wall Partition Type A-4</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-md">Modified thermal insulation parameters in Sector 7G</span>
+</div>
+</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">
+                            2m ago
+                        </div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">code</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm border-b border-outline-variant hover:bg-surface-container-low items-center transition-colors">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container text-body-sm">MR</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Marcus R.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Project Lead</span>
+</div>
+</div>
+<div>
+<span class="bg-secondary-container/20 text-on-secondary-fixed-variant px-sm py-0.5 rounded-full font-label-caps text-label-caps">EXPORTED</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium">Cost Summary Q3_Final</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-md">Generated PDF for stakeholder review</span>
+</div>
+</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">
+                            14m ago
+                        </div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">code</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm border-b border-outline-variant hover:bg-surface-container-low items-center transition-colors">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary text-[18px]">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Auto-Estimator AI</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">System Agent</span>
+</div>
+</div>
+<div>
+<span class="bg-tertiary-container/10 text-tertiary-container px-sm py-0.5 rounded-full font-label-caps text-label-caps">CALCULATED</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[20px]">calculate</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium">Bulk Excavation Area B</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-md">Volume updated based on new topographical data (+420m³)</span>
+</div>
+</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">
+                            1h ago
+                        </div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">code</span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm border-b border-outline-variant hover:bg-surface-container-low items-center transition-colors">
+<div class="flex items-center gap-sm">
+<img alt="David A." class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A portrait of a male structural engineer, David A, in a bright, clean, high-tech workspace. He has a professional and serious expression. The background features minimalist design elements and soft, natural lighting. The overall aesthetic is one of precision, professional competence, and modern industrial design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzGrTXCC3ZfH9NEtHRQQoGc7Rqh4lV7Bk2hnI56i75QEVJeJYn4OrqQCR6M9Ry7qPcI16u_fywdYLmJ7skYtHY3pE8Nl8fVEAzZ2IFXMTvweBwlWsHLYxCQGB9zvgs1igO1oisaGG8XR3CMjb2AL46KLQt_VPiylCLLOJ8lm4-8e1M6SXHKBd-av9XGlaOB6414sqypu1Hm-uYFu5wB6MUuxnViyLpXJWz0r9d4bflz99GZeluqp9PcUBg6rQ3PTU8ez3KUX8M0ww"/>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">David A.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Project Manager</span>
+</div>
+</div>
+<div>
+<span class="bg-error-container/20 text-error px-sm py-0.5 rounded-full font-label-caps text-label-caps">DELETED</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[20px]">delete_sweep</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium">Draft Takeoff #882</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-md">Temporary measurement set removed by user</span>
+</div>
+</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">
+                            3h ago
+                        </div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">code</span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-[240px_140px_1fr_120px_60px] gap-md px-md py-sm border-b border-outline-variant hover:bg-surface-container-low items-center transition-colors">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-on-primary-fixed-variant flex items-center justify-center font-bold text-primary-fixed text-body-sm">KL</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold">Kevin L.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Estimator</span>
+</div>
+</div>
+<div>
+<span class="bg-primary-container/10 text-primary-container px-sm py-0.5 rounded-full font-label-caps text-label-caps">UPDATED</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-surface-container rounded border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_document</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium">Labor Rates: Electrical</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate max-w-md">Global pricing index adjustment (+2.5%)</span>
+</div>
+</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant">
+                            5h ago
+                        </div>
+<div class="flex justify-center">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">code</span>
+</div>
+</div>
+</div>
+<!-- Pagination / Status Footer -->
+<div class="px-md py-sm bg-surface-container border-t border-outline-variant flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1-25 of 1,420 events</span>
+<div class="flex items-center gap-xs">
+<button class="p-1 rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="font-body-sm text-body-sm px-md">Page 1 of 57</span>
+<button class="p-1 rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Focused Action / Detail Peek (Optional Bottom Bar) -->
+<div class="flex gap-md">
+<div class="bg-primary-container text-on-primary-container p-md rounded-xl flex-1 flex items-center justify-between border border-primary">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-on-primary-container/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm">Security Policy Alert</span>
+<span class="font-body-md text-body-md opacity-90">3 unverified export attempts detected from external IP range. Review required.</span>
+</div>
+</div>
+<button class="bg-surface-container-lowest text-primary-container font-bold px-lg py-sm rounded-lg hover:bg-on-primary-container hover:text-white transition-colors">
+                        Investigate
+                    </button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl w-[300px] flex flex-col justify-center gap-xs">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Integrity Score</span>
+<div class="flex items-end gap-sm">
+<span class="font-display-sm text-display-sm">99.8%</span>
+<span class="font-body-sm text-body-sm text-primary font-bold mb-1">+0.2%</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[99.8%]"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script src="/site-nav.js"></script>
+</body></html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .sheet-overlay {
+            background: linear-gradient(to right, #f7f9fb 30%, rgba(247, 249, 251, 0.8) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center relative overflow-hidden">
+<!-- Background Layer -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 sheet-overlay z-10"></div>
+<img alt="Architectural Blueprint" class="w-full h-full object-cover opacity-20 grayscale" data-alt="A highly detailed architectural technical drawing showing intricate floor plans and structural elevations with thin black lines on a clean white background. The image has a professional engineering aesthetic with precise measurements and annotations. Soft, natural light falls across the sheet from the side, emphasizing a clean, high-density tool-first environment. The overall mood is focused and technical, using a palette of slate greys and crisp whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqd9H0PBg_GO1PdL5F8SHgmC8UOTl3zUghpat0cnjDtM1oQB8CfI0wzH5t9Jqvo1mqJkgufHMQde1N53qrRJ2W3n1I2JhF-GHhPoA2g_e8abkvwvLOXFMB5yWHgIMzyf74EWnSSZ2LYaTPlgz811Ba9hxFIIWxgckOBlMYu9SAGntkINB7JJgoD-7XFA_ieUj_DBL-RZkeh7jwVJkWAt7H2YTFkFv2DQQE4S94H5Z_0BhySzdacLQbJAUSW4DQGk15_4vjs0Kk--o"/>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-20 w-full max-w-[1200px] grid md:grid-cols-2 gap-xl px-md items-center">
+<!-- Sign-In Card Container -->
+<div class="flex justify-center md:justify-start">
+<div class="bg-surface-container-lowest p-xl border border-outline-variant shadow-lg w-full max-w-[440px] rounded-lg">
+<!-- Branding -->
+<div class="mb-xl">
+<h1 class="font-display-sm text-display-sm text-on-surface mb-xs">ProEstimator AI</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Precision Construction Management</p>
+</div>
+<!-- Clerk-style Header -->
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Sign in</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">to continue to Takeoff Engine</p>
+</div>
+<!-- Social Logins -->
+<div class="space-y-sm mb-lg">
+<button class="w-full flex items-center justify-center gap-sm border border-outline-variant py-sm px-md hover:bg-surface-container transition-colors duration-150 rounded-lg">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-body-md text-body-md text-on-surface">Continue with Google</span>
+</button>
+<button class="w-full flex items-center justify-center gap-sm border border-outline-variant py-sm px-md hover:bg-surface-container transition-colors duration-150 rounded-lg">
+<svg class="w-5 h-5" viewbox="0 0 23 23">
+<path d="M1 1h10v10H1z" fill="#f35325"></path><path d="M12 1h10v10H12z" fill="#81bc06"></path><path d="M1 12h10v10H1z" fill="#05a6f0"></path><path d="M12 12h10v10H12z" fill="#ffba08"></path>
+</svg>
+<span class="font-body-md text-body-md text-on-surface">Continue with Microsoft</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="flex items-center gap-sm mb-lg">
+<div class="h-[1px] bg-outline-variant flex-grow"></div>
+<span class="font-label-caps text-label-caps text-outline uppercase">or</span>
+<div class="h-[1px] bg-outline-variant flex-grow"></div>
+</div>
+<!-- Email Form -->
+<form class="space-y-md">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-xs" for="email">EMAIL ADDRESS</label>
+<input class="w-full h-8 bg-surface-container-low border border-outline-variant px-sm font-body-md text-body-md focus:ring-1 focus:ring-primary focus:border-primary outline-none rounded" id="email" name="email" placeholder="estimator@organization.com" type="email"/>
+</div>
+<button class="w-full h-8 bg-primary text-on-primary font-body-md text-body-md font-semibold hover:bg-primary-container transition-colors duration-150 rounded" type="button">
+                        Continue
+                    </button>
+</form>
+<!-- Footer Links -->
+<div class="mt-xl flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Don't have an account?</p>
+<a class="font-body-sm text-body-sm text-primary font-semibold hover:underline" href="#">Sign up</a>
+</div>
+<div class="pt-md border-t border-outline-variant flex justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" href="#">Help</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" href="#">Privacy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface" href="#">Terms</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Content Side (Desktop Only) -->
+<div class="hidden md:flex flex-col gap-lg">
+<div class="space-y-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">PRECISION DATA TAKE OFF</span>
+</div>
+<h3 class="font-display-sm text-display-sm text-on-surface leading-tight">Quantify your projects with surgical accuracy.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                    Automate sheet measurement, material counts, and cost estimation using our purpose-built AI engine designed for the high-density demands of professional construction.
+                </p>
+</div>
+<!-- Mini Preview Component -->
+<div class="bg-surface-container-highest/50 backdrop-blur-sm border border-outline-variant p-md rounded-lg max-w-sm">
+<div class="flex justify-between items-center mb-md">
+<span class="font-data-sm text-data-sm text-on-surface">MEASUREMENT_LOG_042</span>
+<span class="bg-on-secondary-fixed-variant text-primary-fixed-dim px-xs font-label-caps text-label-caps rounded">VERIFIED</span>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-data-md text-data-md">
+<span class="text-on-surface-variant">Linear Wall (Type A)</span>
+<span class="text-on-surface">452.40 LF</span>
+</div>
+<div class="flex justify-between font-data-md text-data-md">
+<span class="text-on-surface-variant">Slab Area (Level 01)</span>
+<span class="text-on-surface">12,400.00 SF</span>
+</div>
+<div class="flex justify-between font-data-md text-data-md">
+<span class="text-on-surface-variant">Concrete Volume</span>
+<span class="text-on-surface">184.50 CY</span>
+</div>
+</div>
+<div class="mt-md pt-sm border-t border-outline-variant flex gap-sm">
+<kbd class="font-data-sm text-data-sm border border-outline-variant bg-surface-container-low px-xs rounded">L</kbd>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Line Tool</span>
+<kbd class="font-data-sm text-data-sm border border-outline-variant bg-surface-container-low px-xs rounded">A</kbd>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Area Tool</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Floating Footer Action (Contextual Suppression Logic Applied) -->
+<!-- FAB Suppressed for transactional/login screen as per requirements -->
+</body></html>

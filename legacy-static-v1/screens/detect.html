@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "primary-container": "#2563eb",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "outline": "#737686",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-container": "#5c647a",
+                    "surface-container-high": "#e6e8ea",
+                    "outline-variant": "#c3c6d7",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-surface-variant": "#434655",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#dae2fd",
+                    "surface": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#943700",
+                    "secondary-container": "#dae2fd",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "background": "#f7f9fb",
+                    "on-primary-container": "#eeefff",
+                    "primary": "#004ac6",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary": "#565e74"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sidebar-width": "240px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "toolbar-width": "48px",
+                    "md": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 18px;
+        }
+        .canvas-bg {
+            background-image: 
+                linear-gradient(#e0e3e5 1px, transparent 1px),
+                linear-gradient(90deg, #e0e3e5 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- Shared SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col z-50">
+<div class="p-md">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-8 h-8 bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h1 class="font-display-sm text-display-sm font-bold text-surface-container-lowest leading-none">ProEstimator AI</h1>
+<p class="text-body-sm text-on-surface-variant opacity-70">Precision Construction</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-sm px-md rounded font-bold flex items-center justify-center gap-sm mb-lg">
+<span class="material-symbols-outlined">add</span>
+                New Project
+            </button>
+<nav class="space-y-xs">
+<!-- Takeoffs is Active -->
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span>Plans</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">straighten</span>
+<span>Takeoffs</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span>Estimates</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span>Library</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant/20">
+<nav class="space-y-xs">
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-md p-sm rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Support</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-sidebar-width flex flex-col relative h-full">
+<!-- Shared TopNavBar -->
+<header class="flex justify-between items-center h-12 px-md bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Takeoff Engine</span>
+<div class="relative group">
+<input class="bg-surface-container border-none h-8 w-64 rounded px-md text-body-sm focus:ring-1 focus:ring-primary" placeholder="Search project files..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-on-surface-variant opacity-50">search</span>
+</div>
+<nav class="flex gap-md">
+<a class="font-body-sm text-on-surface-variant hover:text-on-surface transition-opacity duration-100" href="#">Projects</a>
+<a class="font-body-sm text-on-surface-variant hover:text-on-surface transition-opacity duration-100" href="#">Team</a>
+<a class="font-body-sm text-on-surface-variant hover:text-on-surface transition-opacity duration-100" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex gap-sm border-r border-outline-variant pr-md mr-sm">
+<button class="p-1 hover:bg-surface-container rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant">notifications</span></button>
+<button class="p-1 hover:bg-surface-container rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant">history</span></button>
+<button class="p-1 hover:bg-surface-container rounded transition-colors"><span class="material-symbols-outlined text-on-surface-variant">help</span></button>
+</div>
+<button class="h-8 px-md text-body-sm font-bold border border-outline-variant rounded hover:bg-surface-container">Export</button>
+<button class="h-8 px-md text-body-sm font-bold bg-primary text-on-primary rounded hover:bg-primary/90">Invite</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsZSBa_-K2BMUdQ6P5Hj4OWdQlHvbmhs3AiP988U7XH-l5md3cdKjLBj4tJrDwL39s0EmOngwbq-YASgGy420D6D3XVFbJAsR_29Mzxo_81hDfAVIMUz95dLSLg6GfjOWiNvMvUd_13sIF027uM3eug8RN7GfTNTFbwpGugvDBoxwXQkZ_4eZSORtQ8yFIqtaQbhCZnueC_dlEGWfp1U0ryaty8HzRhQww24x3sYqV-ht8yLzlbtF7NZX_tG7JhJzTwX7Pq6nsDeg"/>
+</div>
+</div>
+</header>
+<!-- Viewer Layout -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Tool Palette -->
+<div class="w-toolbar-width bg-surface-container-low border-r border-outline-variant flex flex-col items-center py-sm gap-sm">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary-container"><span class="material-symbols-outlined">near_me</span></button>
+<div class="w-6 h-px bg-outline-variant mx-auto my-xs"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">straighten</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">polyline</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">square_foot</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">format_shapes</span></button>
+<div class="w-6 h-px bg-outline-variant mx-auto my-xs"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">layers</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined">content_copy</span></button>
+</div>
+<!-- Main Canvas / Sheet Viewer -->
+<div class="flex-1 bg-surface-container-lowest relative overflow-hidden canvas-bg">
+<!-- Floating Info Card -->
+<div class="absolute top-md left-md bg-surface border border-outline-variant rounded p-sm shadow-md flex items-center gap-md z-10">
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface-variant">ACTIVE SHEET</span>
+<span class="text-body-md font-bold">A-101 GROUND FLOOR PLAN</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col">
+<span class="text-label-caps font-label-caps text-on-surface-variant">SCALE</span>
+<span class="text-body-md font-data-md">1/4" = 1'-0"</span>
+</div>
+</div>
+<!-- Plan Visualization Placeholder -->
+<div class="w-full h-full flex items-center justify-center pointer-events-none opacity-40">
+<div class="w-4/5 h-4/5 border-2 border-dashed border-outline-variant rounded-lg flex items-center justify-center">
+<img alt="Floor Plan" class="max-w-full max-h-full" data-alt="A detailed, clean architectural blueprint of a commercial office layout. The floor plan shows technical lines for walls, corridors, and doors in a precise CAD-like style. Minimalist aesthetic with crisp black lines on a clean white background. Various technical annotations and dimensions are scattered throughout the layout with mechanical precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABimcNSkshZ-GIiCIxkqU8w0hsv97V8id_kpGPxazV2oU428RoNQdefEYooFvsTn0B4ixsb4icbSNpRNkFDzzmSvyqwqUkvGDO-evxGfeP96j3A91s1aWJPYVwWgmzJyuia7P_7XXhSNXar2eTvr0ReSoUA4LLqhzOfswgiJJ6wEZQVtzekJNe0SSby4Fr79BpAn83Df1KuPpchloCTZTOZC_GaPKTxgXqsjVxUWGBtBbCGfOrKsziYwuAzrH8Lpndbhg5YY043qw"/>
+</div>
+</div>
+<!-- Highlight Overlay for "Corridor C3" -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-64 bg-primary/10 border-2 border-primary rounded-sm flex items-center justify-center">
+<div class="bg-primary text-on-primary text-[10px] px-1 font-bold rounded-sm absolute -top-4 left-0">CORRIDOR C3</div>
+</div>
+<!-- Viewport Controls -->
+<div class="absolute bottom-md left-1/2 -translate-x-1/2 flex items-center gap-xs bg-surface border border-outline-variant rounded-full p-xs shadow-md">
+<button class="p-1 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">zoom_out</span></button>
+<div class="px-md font-data-sm text-on-surface">84%</div>
+<button class="p-1 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">zoom_in</span></button>
+<div class="w-px h-4 bg-outline-variant"></div>
+<button class="p-1 hover:bg-surface-container rounded-full"><span class="material-symbols-outlined">fullscreen</span></button>
+</div>
+</div>
+<!-- Right Panel Inspector: Chat Active -->
+<aside class="w-[340px] bg-surface border-l border-outline-variant flex flex-col h-full">
+<!-- Panel Header / Tabs -->
+<div class="flex border-b border-outline-variant">
+<button class="flex-1 py-md text-label-caps font-label-caps text-on-surface-variant border-r border-outline-variant">PROPERTIES</button>
+<button class="flex-1 py-md text-label-caps font-label-caps text-on-surface-variant border-r border-outline-variant">LAYERS</button>
+<button class="flex-1 py-md text-label-caps font-label-caps text-primary border-b-2 border-primary bg-surface-container-low">AI ASSISTANT</button>
+</div>
+<!-- Chat History Area -->
+<div class="flex-1 overflow-y-auto p-md space-y-lg bg-surface">
+<!-- User Message -->
+<div class="flex flex-col items-end gap-xs">
+<div class="bg-secondary-container text-on-secondary-container p-sm rounded-lg rounded-tr-none max-w-[90%] text-body-md">
+                            What is the total drywall area for Corridor C3?
+                        </div>
+<span class="text-[10px] text-on-surface-variant font-medium">ESTIMATOR • 09:42 AM</span>
+</div>
+<!-- Assistant Message -->
+<div class="flex flex-col items-start gap-xs">
+<div class="bg-surface-container-low border border-outline-variant p-sm rounded-lg rounded-tl-none max-w-[95%] space-y-md">
+<p class="text-body-md text-on-surface">Total drywall in Corridor C3 is <strong class="text-primary">1,240 SF</strong> across 4 sheets.</p>
+<!-- Technical Quantity Table -->
+<div class="border border-outline-variant rounded overflow-hidden">
+<table class="w-full text-left font-data-sm text-[11px] leading-tight">
+<thead class="bg-surface-container-high border-b border-outline-variant">
+<tr>
+<th class="p-xs font-bold">Sheet</th>
+<th class="p-xs font-bold">Type</th>
+<th class="p-xs font-bold text-right">Area (SF)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr>
+<td class="p-xs">A-101</td>
+<td class="p-xs">Type X 5/8"</td>
+<td class="p-xs text-right">420.0</td>
+</tr>
+<tr>
+<td class="p-xs">A-102</td>
+<td class="p-xs">Type X 5/8"</td>
+<td class="p-xs text-right">380.0</td>
+</tr>
+<tr>
+<td class="p-xs">A-104</td>
+<td class="p-xs">Type X 5/8"</td>
+<td class="p-xs text-right">240.0</td>
+</tr>
+<tr class="bg-surface-container-highest">
+<td class="p-xs font-bold" colspan="2">Total</td>
+<td class="p-xs text-right font-bold">1,240.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Citations -->
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-high border border-outline-variant text-[10px] font-bold px-xs py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">description</span> [A-101 · Bbox]
+                                </span>
+<span class="bg-surface-container-high border border-outline-variant text-[10px] font-bold px-xs py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">menu_book</span> [Spec 09 91 23]
+                                </span>
+</div>
+<!-- Actions -->
+<button class="flex items-center gap-xs text-primary font-bold text-body-sm pt-xs group">
+<span class="material-symbols-outlined group-hover:translate-x-0.5 transition-transform">visibility</span>
+                                View on plans
+                            </button>
+</div>
+<span class="text-[10px] text-primary font-bold">AI ASSISTANT • JUST NOW</span>
+</div>
+</div>
+<!-- Bottom Composer -->
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant">
+<div class="border border-outline-variant rounded focus-within:ring-1 focus-within:ring-primary bg-surface p-sm">
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-body-md placeholder:text-on-surface-variant/40 resize-none" placeholder="Ask Assistant..." rows="3"></textarea>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex items-center gap-sm">
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant">
+<span class="material-symbols-outlined">alternate_email</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant">
+<span class="material-symbols-outlined">image</span>
+</button>
+</div>
+<div class="flex items-center gap-md">
+<div class="px-1.5 py-0.5 border border-outline-variant rounded bg-surface-container-low font-data-sm text-[10px] text-on-surface-variant">Cmd+Enter</div>
+<button class="w-8 h-8 bg-primary text-on-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-sm text-center">AI can make mistakes. Verify critical measurements.</p>
+</div>
+</aside>
+</div>
+</main>
+<script src="/site-nav.js"></script>
+</body></html>

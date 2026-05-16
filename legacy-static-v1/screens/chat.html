@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2563eb",
+                        "primary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#eceef0",
+                        "outline": "#737686",
+                        "inverse-primary": "#b4c5ff",
+                        "on-background": "#191c1e",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-container-high": "#e6e8ea",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#dae2fd",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#bc4800",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943700",
+                        "secondary-container": "#dae2fd",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "primary": "#004ac6",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#131b2e",
+                        "secondary": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sidebar-width": "240px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "toolbar-width": "48px",
+                        "md": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "data-md": ["JetBrains Mono"],
+                        "data-sm": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                        "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .confidence-polygon {
+            mix-blend-mode: multiply;
+        }
+        .canvas-container {
+            background-image: 
+                linear-gradient(45deg, #f1f5f9 25%, transparent 25%), 
+                linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #f1f5f9 75%), 
+                linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-hidden h-screen flex">
+<!-- Sidebar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col h-full overflow-y-auto z-10">
+<div class="p-md">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-surface-container-lowest">architecture</span>
+<div>
+<h1 class="font-display-sm text-display-sm font-bold text-surface-container-lowest">ProEstimator AI</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-70">Precision Construction</p>
+</div>
+</div>
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md text-body-md">Plans</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant" href="#">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-body-md text-body-md">Takeoffs</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-body-md text-body-md">Estimates</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-body-md text-body-md">Library</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-md border-t border-outline-variant/20">
+<nav class="flex flex-col gap-xs">
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-2 rounded transition-colors duration-150 text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-sidebar-width flex flex-col h-full relative">
+<!-- Top Navigation (Shared Component Style) -->
+<header class="flex justify-between items-center h-12 px-md bg-surface dark:bg-surface-dim border-b border-outline-variant z-10">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Takeoff Engine</h2>
+<div class="h-6 w-px bg-outline-variant"></div>
+<nav class="flex items-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface cursor-pointer transition-opacity duration-100" href="#">Projects</a>
+<a class="font-body-sm text-body-sm text-primary border-b-2 border-primary pb-1 cursor-pointer transition-opacity duration-100" href="#">Team</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface cursor-pointer transition-opacity duration-100" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="px-3 py-1 rounded border border-outline-variant text-body-sm font-medium hover:bg-surface-container transition-colors">Export</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded text-body-sm font-medium hover:opacity-90 transition-opacity">Invite</button>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-on-surface">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-on-surface">history</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-on-surface">help</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional male user profile headshot in a clean studio setting with soft lighting. The person wears a modern minimalist black t-shirt. The background is a neutral grey that matches the architectural design system. The image has a sharp, high-resolution aesthetic suitable for a professional software application avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjSWL2jBt3tpPHWEsLyJUsJheLvZCZMrBR4LifwbQ39CHWC62pRpUFWkCT1kVQqMkQR1_QRELzzV0_3pKzQrqr8Bp1gcyIg6Pue63xNNMjtnTjJb8nUacqQ1JMVRClMfTTZyCIhKvhbE8efax9eTlEnBpWtMA8cWHzehwtm0gI-i_e_TICOsN1cVui-lKvU5SZVZ_T3MObQlsPwdD_6I5jNOgdAOgsbq2waDdBE81mdN0rtadM_4RBDmJ1HF9W1cP7_AwQ2f-vtLY"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Tool Palette Sidebar (Left of Canvas) -->
+<div class="absolute left-0 top-12 bottom-0 w-toolbar-width bg-surface-container border-r border-outline-variant flex flex-col items-center py-sm gap-sm z-10">
+<div class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary-container">
+<span class="material-symbols-outlined">near_me</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest text-on-surface-variant">
+<span class="material-symbols-outlined">edit</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest text-on-surface-variant">
+<span class="material-symbols-outlined">square_foot</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest text-on-surface-variant">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<div class="mt-auto w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container-highest text-on-surface-variant">
+<span class="material-symbols-outlined">zoom_in</span>
+</div>
+</div>
+<!-- Main Workspace / Sheet Viewer Background -->
+<main class="flex-1 ml-toolbar-width canvas-container relative overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center opacity-40">
+<img alt="Architectural Plan Background" class="max-w-[120%] grayscale contrast-125" data-alt="A highly detailed architectural blueprint of a modern residential floor plan. The technical drawing features clean black lines on a crisp white background with complex room divisions and structural notations. Professional CAD aesthetic with precise dimensions and drafting symbols visible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRi96jW6SPHC3AVs5fXH-PFk3jwS9pPdBLj__ImT-Zrn3qnLGjqI9VGDBONQMkIcE4vnkJulzuiQ6rqsMnYZj0KH8Es5CbHP0hvSO5e0tXzpneilbXPcWrx48VdhRlN_iaRb3SqxJeBlaDFMET4v_KYZu-quSfTdTcZh_8vSqup7_O-Ev9Rfq9y1ORuI6ZIPn-NDL8JYl5PNma13JnIN15BtnZsE4kote9TMVgwWY6OogihF0koBItmN52BkHWiw99Xva-8PQh0Fk"/>
+</div>
+</main>
+<!-- Overlay: Auto-Detect Review Modal -->
+<div class="absolute inset-0 z-20 bg-black/40 flex items-center justify-center p-xl">
+<div class="w-full h-full max-w-7xl bg-surface rounded shadow-2xl flex flex-col overflow-hidden border border-outline-variant">
+<!-- Modal Toolbar -->
+<div class="h-14 border-b border-outline-variant bg-surface-container flex items-center justify-between px-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">DeviceTablet</span>
+<h3 class="font-headline-sm text-headline-sm">AI Area Detection Review</h3>
+<div class="ml-md flex gap-xs">
+<span class="px-2 py-0.5 bg-green-100 text-green-800 text-[10px] font-bold rounded uppercase">82 High</span>
+<span class="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded uppercase">14 Med</span>
+<span class="px-2 py-0.5 bg-red-100 text-red-800 text-[10px] font-bold rounded uppercase">3 Low</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-3 py-1.5 bg-surface-container-highest border border-outline-variant rounded text-body-sm font-medium hover:bg-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+                            Review one-by-one
+                        </button>
+<button class="flex items-center gap-xs px-3 py-1.5 bg-error-container text-on-error-container border border-error/20 rounded text-body-sm font-medium hover:bg-error-container/80 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+                            Reject all low-confidence
+                        </button>
+<button class="flex items-center gap-xs px-3 py-1.5 bg-primary text-on-primary rounded text-body-sm font-medium hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Accept all high-confidence
+                        </button>
+</div>
+</div>
+<!-- Modal Content: Split Screen -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Pane: Original Sheet -->
+<div class="flex-1 border-r border-outline-variant bg-white relative overflow-hidden">
+<div class="absolute top-2 left-2 z-10 px-2 py-1 bg-inverse-surface/80 text-white text-[10px] font-bold rounded uppercase tracking-wider">Original Sheet</div>
+<div class="w-full h-full p-xl flex items-center justify-center">
+<img alt="Sheet View" class="w-full h-auto object-contain" data-alt="A sharp, technical top-down view of an architectural floor plan on white paper. The drawing shows clean black lines representing walls, door swings, and window openings of a commercial office layout. Professional drafting standards with visible text labels and dimension lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr40FwxEurJwY40NS7rNj8SuyECxCU4PYwi5mKbuFaMlxdnrh3TVCboOnZ8KLvXgw57g9LSByPT51KvgLdqx3aIwnuRCZ4c79q_Fv_-hNfyLNcsUShlo04Q6-tO6gDj1wmTBhnziqPB0-mc2cdQ995QZeNE3KFBVJa90QO5F3rB5-kWfd0iZ6q4BIZMghWKrxEmZ8bznx655ufHBqL97oGNKY_qzoaJqGqEi-cRaZTgKwplJ8Ki_7fLvwY5iK6g7H3v6qWQY9iAlE"/>
+</div>
+</div>
+<!-- Right Pane: Analysis View -->
+<div class="flex-1 bg-white relative overflow-hidden">
+<div class="absolute top-2 left-2 z-10 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">AI Analysis Preview</div>
+<!-- Simulated Canvas with Polygons -->
+<div class="w-full h-full p-xl flex items-center justify-center relative">
+<img alt="Sheet View Overlay" class="w-full h-auto object-contain opacity-50" data-alt="The same architectural floor plan but with semi-transparent, color-coded overlays. Bright green, amber, and red geometric shapes perfectly match the room boundaries. Small digital tags with percentages like 98% and 42% are floating over the colored areas to indicate detection confidence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_BS6k18I85I_VLmJ2UkFSCtIcZT1I5_WCZTbGlSQg4ho6yIgEGbZdZQXlcldELmSp0ZMzxY8-cJvgjvGrjXyCdrOROMOxRmk9IkACDbrJver_EyEc4QzKi0JMb_R_JXj_NdAFdhwU2pPgoqLvtcipfJmy__HMSfFmgS-Cj-NFcT_V0UClIPWUKfzRSug-EpP_NVHZITP8JvuBTc3aq7Z4c0bXL6w2ulYyr3GRCCdJ78Sl_GfMAt-rKRrhlQ3kQypFJ1aeHkSqbSU"/>
+<!-- SVG Overlay for Polygons -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 800 600">
+<!-- High Confidence: Green -->
+<polygon class="fill-green-500/30 stroke-green-600 stroke-2 confidence-polygon" points="150,150 350,150 350,280 150,280"></polygon>
+<foreignobject height="20" width="60" x="220" y="200">
+<div class="bg-green-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
+                                        98% <span class="material-symbols-outlined text-[10px]">verified</span>
+</div>
+</foreignobject>
+<!-- Medium Confidence: Amber -->
+<polygon class="fill-amber-500/30 stroke-amber-600 stroke-2 confidence-polygon" points="360,150 550,150 550,220 360,220"></polygon>
+<foreignobject height="20" width="60" x="430" y="175">
+<div class="bg-amber-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
+                                        64% <span class="material-symbols-outlined text-[10px]">info</span>
+</div>
+</foreignobject>
+<!-- Low Confidence: Red -->
+<polygon class="fill-red-500/30 stroke-red-600 stroke-2 confidence-polygon" points="560,150 750,150 750,350 560,350"></polygon>
+<foreignobject height="20" width="60" x="630" y="240">
+<div class="bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1">
+                                        31% <span class="material-symbols-outlined text-[10px]">warning</span>
+</div>
+</foreignobject>
+</svg>
+</div>
+<!-- Mini Interaction Tooltip -->
+<div class="absolute bottom-md right-md bg-inverse-surface text-surface p-sm rounded shadow-lg flex flex-col gap-xs border border-outline">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase">Selected Polygon</span>
+<div class="flex items-center justify-between gap-xl">
+<span class="font-body-sm font-semibold">Living Room Area</span>
+<span class="font-data-sm text-data-sm text-primary-fixed">142.5 sq ft</span>
+</div>
+<div class="flex gap-sm mt-xs">
+<button class="flex-1 bg-surface-container-lowest text-on-surface px-2 py-1 text-[11px] font-bold rounded">EDIT</button>
+<button class="flex-1 bg-error text-white px-2 py-1 text-[11px] font-bold rounded">REJECT</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Bottom Bar -->
+<div class="h-14 border-t border-outline-variant bg-surface flex items-center justify-between px-md">
+<div class="flex items-center gap-md flex-1 max-w-lg">
+<label class="font-body-sm font-semibold text-on-surface-variant whitespace-nowrap">Assign to Classification:</label>
+<div class="relative flex-1">
+<select class="w-full h-8 pl-sm pr-lg text-body-sm bg-surface-container-low border-outline-variant rounded focus:ring-1 focus:ring-primary appearance-none">
+<option>Flooring - Polished Concrete</option>
+<option>Walls - Drywall 5/8"</option>
+<option>Ceiling - Acoustical Tile</option>
+<option>General Area Takeoff</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-[20px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-data-sm text-data-sm text-on-surface-variant mr-md">Keyboard: <kbd class="px-1 border border-outline-variant rounded bg-surface-container-high text-[10px]">SPACE</kbd> Accept, <kbd class="px-1 border border-outline-variant rounded bg-surface-container-high text-[10px]">DEL</kbd> Reject</span>
+<button class="h-9 px-6 bg-surface-container-highest border border-outline-variant rounded font-body-sm font-bold hover:bg-outline-variant transition-colors">CANCEL</button>
+<button class="h-9 px-6 bg-primary text-on-primary rounded font-body-sm font-bold shadow-sm hover:opacity-90 transition-opacity">FINISH REVIEW</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="/site-nav.js"></script>
+</body></html>

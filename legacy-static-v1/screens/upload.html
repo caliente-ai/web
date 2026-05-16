@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "primary-container": "#2563eb",
+                    "primary-fixed": "#dbe1ff",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#eceef0",
+                    "outline": "#737686",
+                    "inverse-primary": "#b4c5ff",
+                    "on-background": "#191c1e",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "on-secondary-container": "#5c647a",
+                    "surface-container-high": "#e6e8ea",
+                    "outline-variant": "#c3c6d7",
+                    "surface-tint": "#0053db",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "on-surface-variant": "#434655",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed": "#dae2fd",
+                    "surface": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#360f00",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#bc4800",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#00174b",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#943700",
+                    "secondary-container": "#dae2fd",
+                    "tertiary-fixed": "#ffdbcd",
+                    "on-tertiary-fixed-variant": "#7d2d00",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb596",
+                    "background": "#f7f9fb",
+                    "on-primary-container": "#eeefff",
+                    "primary": "#004ac6",
+                    "on-tertiary-container": "#ffede6",
+                    "on-secondary-fixed": "#131b2e",
+                    "secondary": "#565e74"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sidebar-width": "240px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "xs": "4px",
+                    "toolbar-width": "48px",
+                    "md": "16px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-sm": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "data-md": ["JetBrains Mono"],
+                    "data-sm": ["JetBrains Mono"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                    "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- Background Dashboard (Dimmed) -->
+<div class="fixed inset-0 flex grayscale brightness-50 pointer-events-none">
+<!-- Side Navigation (Predicted Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col h-full overflow-y-auto z-0">
+<div class="p-md">
+<div class="font-display-sm text-display-sm font-bold text-surface-container-lowest mb-xs">ProEstimator AI</div>
+<div class="font-body-md text-body-md text-primary-fixed opacity-70">Precision Construction</div>
+</div>
+<div class="mt-md px-sm space-y-xs flex-grow">
+<div class="flex items-center gap-sm p-sm rounded text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-sm p-sm rounded text-on-surface-variant">
+<span class="material-symbols-outlined">architecture</span>
+<span class="font-body-md text-body-md">Plans</span>
+</div>
+<div class="flex items-center gap-sm p-sm rounded text-on-surface-variant">
+<span class="material-symbols-outlined">straighten</span>
+<span class="font-body-md text-body-md">Takeoffs</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex-grow flex flex-col">
+<!-- Top Nav Bar (Predicted Anchor) -->
+<header class="flex justify-between items-center h-12 px-md bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Takeoff Engine</span>
+<div class="flex gap-md">
+<span class="font-body-sm text-body-sm text-primary border-b-2 border-primary pb-1">Projects</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Team</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest"></div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg grid grid-cols-12 gap-md">
+<div class="col-span-8 bg-surface-container-lowest p-md border border-outline-variant h-64"></div>
+<div class="col-span-4 bg-surface-container-lowest p-md border border-outline-variant h-64"></div>
+<div class="col-span-12 bg-surface-container-lowest p-md border border-outline-variant h-96"></div>
+</div>
+</main>
+</div>
+<!-- Modal Backdrop Overlay -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 flex items-center justify-center p-md">
+<!-- Upload + Ingest Progress Modal -->
+<div class="bg-surface-container-lowest w-full max-w-2xl border border-outline shadow-xl flex flex-col overflow-hidden">
+<!-- Header -->
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Ingesting Project Files</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Technical Drawing Processing Engine v4.2</p>
+</div>
+<div class="px-sm py-xs bg-surface-container-high rounded border border-outline-variant">
+<span class="font-label-caps text-label-caps">PROCESSING</span>
+</div>
+</div>
+<!-- Stepper Content -->
+<div class="p-lg">
+<div class="flex items-center justify-between mb-xl relative">
+<!-- Progress Line Background -->
+<div class="absolute top-4 left-0 w-full h-0.5 bg-surface-container-high -z-10"></div>
+<!-- Step 1: Upload (Complete) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Upload</span>
+</div>
+<!-- Step 2: Split (Complete) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface">Split</span>
+</div>
+<!-- Step 3: OCR (Active) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full border-2 border-primary bg-surface-container-lowest text-primary flex items-center justify-center ring-4 ring-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">text_fields</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary">OCR Scan</span>
+</div>
+<!-- Step 4: Tile (Pending) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Tile</span>
+</div>
+<!-- Step 5: Auto-name (Pending) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">label</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Auto-name</span>
+</div>
+<!-- Step 6: Ready (Pending) -->
+<div class="flex flex-col items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">flag</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Ready</span>
+</div>
+</div>
+<!-- Progress Detail Section -->
+<div class="bg-surface-container-low p-md border border-outline-variant">
+<div class="flex justify-between items-end mb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="font-data-md text-data-md">Sheet A-101 <span class="text-on-surface-variant opacity-60">(2/45)</span></span>
+</div>
+<div class="text-right">
+<div class="font-data-sm text-data-sm text-primary">ETA: 3m remaining</div>
+</div>
+</div>
+<!-- Main Progress Bar -->
+<div class="h-2 w-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary w-[38%] relative">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+<!-- Progress Percentage -->
+<div class="mt-xs flex justify-between">
+<span class="font-data-sm text-data-sm text-on-surface-variant">OCR Analysis in progress...</span>
+<span class="font-data-md text-data-md text-primary">38.4%</span>
+</div>
+</div>
+<!-- Active Log Snippet -->
+<div class="mt-md font-data-sm text-data-sm text-on-surface-variant space-y-1 opacity-80">
+<div class="flex gap-sm">
+<span class="text-outline">14:02:11</span>
+<span>[INFO] Successfully split 'Master_Plan_Final.pdf' into 45 segments.</span>
+</div>
+<div class="flex gap-sm">
+<span class="text-outline">14:02:15</span>
+<span>[INFO] OCR engine initialized for Sheet A-101.</span>
+</div>
+<div class="flex gap-sm text-primary">
+<span class="text-outline">14:02:19</span>
+<span>[PROC] Detecting text nodes and vector intersections...</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-lg py-md border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<button class="px-md h-8 border border-outline-variant font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    Cancel
+                </button>
+<div class="flex gap-sm">
+<button class="px-md h-8 font-body-sm text-body-sm text-primary hover:bg-primary-container/10 transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                        View logs
+                    </button>
+<button class="px-md h-8 bg-surface-container-highest font-body-sm text-body-sm text-on-surface-variant cursor-not-allowed opacity-50">
+                        Continue to Workspace
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<script src="/site-nav.js"></script>
+</body></html>

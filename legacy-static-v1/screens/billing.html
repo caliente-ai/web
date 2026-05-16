@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .sidebar-active-indicator::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #b4c5ff;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "primary-container": "#2563eb",
+                      "primary-fixed": "#dbe1ff",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#eceef0",
+                      "outline": "#737686",
+                      "inverse-primary": "#b4c5ff",
+                      "on-background": "#191c1e",
+                      "surface-container-highest": "#e0e3e5",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "on-secondary-container": "#5c647a",
+                      "surface-container-high": "#e6e8ea",
+                      "outline-variant": "#c3c6d7",
+                      "surface-tint": "#0053db",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "on-surface-variant": "#434655",
+                      "surface-variant": "#e0e3e5",
+                      "inverse-surface": "#2d3133",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f2f4f6",
+                      "secondary-fixed": "#dae2fd",
+                      "surface": "#f7f9fb",
+                      "surface-dim": "#d8dadc",
+                      "surface-bright": "#f7f9fb",
+                      "on-tertiary-fixed": "#360f00",
+                      "on-surface": "#191c1e",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-container": "#bc4800",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#00174b",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#943700",
+                      "secondary-container": "#dae2fd",
+                      "tertiary-fixed": "#ffdbcd",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "background": "#f7f9fb",
+                      "on-primary-container": "#eeefff",
+                      "primary": "#004ac6",
+                      "on-tertiary-container": "#ffede6",
+                      "on-secondary-fixed": "#131b2e",
+                      "secondary": "#565e74"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "sidebar-width": "240px",
+                      "sm": "8px",
+                      "xl": "32px",
+                      "xs": "4px",
+                      "toolbar-width": "48px",
+                      "md": "16px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "display-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "data-md": ["JetBrains Mono"],
+                      "data-sm": ["JetBrains Mono"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "display-sm": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-caps": ["10px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                      "data-md": ["13px", {"lineHeight": "18px", "fontWeight": "500"}],
+                      "data-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Global Side Navigation (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-inverse-surface dark:bg-inverse-surface border-r border-outline-variant flex flex-col h-full overflow-y-auto z-50">
+<div class="px-md py-lg">
+<div class="flex items-center gap-sm mb-xl">
+<div class="w-8 h-8 bg-surface-container-lowest rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-inverse-surface" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h1 class="font-display-sm text-display-sm font-bold text-surface-container-lowest leading-tight">ProEstimator AI</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-80">Precision Construction</p>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">architecture</span> Plans
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">straighten</span> Takeoffs
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">calculate</span> Estimates
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">assessment</span> Reports
+                </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">folder_open</span> Library
+                </a>
+</nav>
+</div>
+<div class="mt-auto px-md py-lg space-y-xs">
+<a class="text-primary-fixed-dim font-bold bg-on-secondary-fixed-variant flex items-center gap-sm px-sm py-xs rounded transition-colors duration-150 font-body-md text-body-md relative sidebar-active-indicator" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="flex items-center gap-sm px-sm py-xs rounded text-on-surface-variant hover:bg-on-secondary-fixed-variant hover:text-primary-fixed transition-colors duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help_outline</span> Support
+            </a>
+</div>
+</aside>
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="fixed top-0 left-sidebar-width right-0 h-12 bg-surface dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center px-md z-40">
+<div class="flex items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Takeoff Engine</span>
+<div class="h-6 w-px bg-outline-variant mx-sm"></div>
+<nav class="flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm cursor-pointer transition-opacity duration-100" href="#">Projects</a>
+<a class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm cursor-pointer transition-opacity duration-100" href="#">Team</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-body-sm text-body-sm cursor-pointer transition-opacity duration-100" href="#">Billing</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] cursor-pointer hover:text-on-surface transition-opacity duration-100">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] cursor-pointer hover:text-on-surface transition-opacity duration-100">history</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] cursor-pointer hover:text-on-surface transition-opacity duration-100">help</span>
+</div>
+<button class="bg-primary text-on-primary px-sm py-1 rounded font-body-sm text-body-sm hover:opacity-90 transition-opacity">Invite</button>
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged man in a business setting, featuring soft studio lighting and a clean, blurred office background. The man has a confident expression, wearing a tailored navy suit and white shirt. The overall aesthetic is sharp, high-resolution, and projects a sense of reliability and executive leadership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzdk--zV4VXQA4mOyAPS5Le-bJQoWm_YZyQEic6Rgik4uG9nLESszkc1gploXAIOFNL1FwTs7caeQFVGaA_Z8gjVB1Yru9F4Y7rWNKf1pypouVA8O3b4GbBUGzTJuCwtQ1uPfmjWK-lR70V2MsfQjE8SuLtXf2OqQlUTretVqsua7aDYpsTyue-GIzp2t73gyEXshb2ZbEzD5WiCWdn46Y4B1Md_iGO7526Te8AHydxd3_55wSHsSJZu07VgwCqrm3hJOC-XHt4rM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width pt-12 min-h-screen bg-surface">
+<div class="max-w-4xl mx-auto p-lg">
+<!-- Page Header -->
+<div class="mb-xl">
+<h2 class="font-display-sm text-display-sm text-on-surface mb-xs">Billing &amp; Usage</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your subscription, seats, and monitor your monthly API usage.</p>
+</div>
+<!-- Billing Layout Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg items-start">
+<!-- Plan Card -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col justify-between h-full">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<div class="inline-flex items-center px-sm py-xs bg-primary-fixed text-on-primary-fixed-variant rounded text-label-caps mb-sm">CURRENT PLAN</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pro — $99/seat/mo</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Advanced features for professional estimators including AI-assisted takeoff.</p>
+</div>
+<div class="bg-surface-container p-sm rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md border-t border-outline-variant pt-lg mt-auto">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Active Seats</p>
+<p class="font-data-md text-data-md text-on-surface">12 Seats Assigned</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Next Invoice</p>
+<p class="font-data-md text-data-md text-on-surface">Oct 12, 2023</p>
+</div>
+</div>
+</div>
+<!-- Primary Action Card -->
+<div class="md:col-span-1 bg-surface-container-high border border-outline-variant p-lg rounded-xl flex flex-col gap-md">
+<div class="text-center py-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xl">Your subscription is managed through Stripe’s secure customer portal.</p>
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-body-md text-body-md font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-sm">
+                            Manage in Stripe
+                            <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</button>
+</div>
+<div class="border-t border-outline-variant pt-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">Payment Method: <span class="font-data-sm text-data-sm text-on-surface">Visa •••• 4242</span></p>
+</div>
+</div>
+<!-- Usage Section -->
+<div class="md:col-span-3 mt-md">
+<div class="flex items-center justify-between mb-md">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Usage this month</h4>
+<div class="flex items-center gap-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reset in 12 days</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">info</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<!-- Main Usage Bar -->
+<div class="p-lg border-b border-outline-variant">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">document_scanner</span>
+<p class="font-body-md text-body-md font-semibold text-on-surface">OCR Document Processing</p>
+</div>
+<div class="flex items-baseline gap-xs">
+<span class="font-data-md text-data-md text-on-surface">4,210</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 10,000 pages</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500" style="width: 42.1%"></div>
+</div>
+<div class="flex justify-between mt-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant">42.1% of monthly quota used</p>
+<span class="font-label-caps text-label-caps text-primary uppercase">Within Limits</span>
+</div>
+</div>
+<!-- High Density Data Points -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-outline-variant">
+<div class="p-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">AI Takeoff Requests</p>
+<div class="flex items-center justify-between">
+<span class="font-data-md text-data-md text-on-surface">1,842</span>
+<span class="px-xs py-[2px] bg-surface-container text-on-surface-variant rounded text-data-sm">76/day avg</span>
+</div>
+</div>
+<div class="p-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Storage Used</p>
+<div class="flex items-center justify-between">
+<span class="font-data-md text-data-md text-on-surface">142.8 GB</span>
+<span class="px-xs py-[2px] bg-surface-container text-on-surface-variant rounded text-data-sm">of 500GB</span>
+</div>
+</div>
+<div class="p-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Export API Calls</p>
+<div class="flex items-center justify-between">
+<span class="font-data-md text-data-md text-on-surface">431</span>
+<span class="px-xs py-[2px] bg-surface-container text-on-surface-variant rounded text-data-sm">86% success</span>
+</div>
+</div>
+<div class="p-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-sm">Team Members</p>
+<div class="flex items-center justify-between">
+<span class="font-data-md text-data-md text-on-surface">12 / 20</span>
+<span class="px-xs py-[2px] bg-secondary-fixed text-on-secondary-fixed-variant rounded text-data-sm">8 slots open</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Usage Table / Details -->
+<div class="mt-lg">
+<div class="flex items-center gap-sm mb-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Recent Usage Logs</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant uppercase">Service</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant uppercase">Quantity</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant uppercase">Timestamp (UTC)</th>
+<th class="px-md py-sm font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-md py-sm font-body-sm text-body-sm text-on-surface">Plan Extraction AI</td>
+<td class="px-md py-sm font-data-sm text-data-sm">24 pages</td>
+<td class="px-md py-sm font-data-sm text-data-sm">2023-10-01 14:22:11</td>
+<td class="px-md py-sm text-right"><span class="inline-flex h-2 w-2 rounded-full bg-primary-container mr-sm"></span><span class="font-label-caps text-label-caps">PROCESSED</span></td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-md py-sm font-body-sm text-body-sm text-on-surface">Structural Analysis OCR</td>
+<td class="px-md py-sm font-data-sm text-data-sm">112 pages</td>
+<td class="px-md py-sm font-data-sm text-data-sm">2023-10-01 12:15:45</td>
+<td class="px-md py-sm text-right"><span class="inline-flex h-2 w-2 rounded-full bg-primary-container mr-sm"></span><span class="font-label-caps text-label-caps">PROCESSED</span></td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors">
+<td class="px-md py-sm font-body-sm text-body-sm text-on-surface">Bulk PDF Export</td>
+<td class="px-md py-sm font-data-sm text-data-sm">1 job (4 files)</td>
+<td class="px-md py-sm font-data-sm text-data-sm">2023-10-01 10:44:02</td>
+<td class="px-md py-sm text-right"><span class="inline-flex h-2 w-2 rounded-full bg-primary-container mr-sm"></span><span class="font-label-caps text-label-caps">PROCESSED</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Help/Info -->
+<footer class="mt-xl pt-lg border-t border-outline-variant flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">verified_user</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">PCI Compliant Payments</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">lock</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">256-bit Encryption</span>
+</div>
+</div>
+<div class="flex gap-md">
+<a class="font-body-sm text-body-sm text-primary hover:underline" href="#">Billing Terms</a>
+<a class="font-body-sm text-body-sm text-primary hover:underline" href="#">Download Invoices</a>
+</div>
+</footer>
+</div>
+</main>
+<script src="/site-nav.js"></script>
+</body></html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProEstimator AI - Project Takeoff Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Inter+Tight:wght@600;700;800;900&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#0b1c30",
+                        "secondary-container": "#dae2fd",
+                        "error-red": "#EF4444",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#adc6ff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#e1e0ff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "border-subtle": "#E2E8F0",
+                        "on-error-container": "#93000a",
+                        "primary": "#0058be",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-surface-variant": "#424754",
+                        "on-primary-container": "#fefcff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "sidebar-navy": "#0F172A",
+                        "tertiary-container": "#6063ee",
+                        "success-green": "#10B981",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "secondary": "#565e74",
+                        "primary-container": "#2170e4",
+                        "on-tertiary-container": "#fffbff",
+                        "surface": "#f8f9ff",
+                        "on-secondary-container": "#5c647a",
+                        "outline-variant": "#c2c6d6",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#005ac2",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#d3e4fe",
+                        "ai-glow": "rgba(59, 130, 246, 0.15)",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed-variant": "#004395",
+                        "inverse-surface": "#213145",
+                        "background": "#f8f9ff",
+                        "tertiary": "#4648d4",
+                        "on-primary-fixed": "#001a42",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-fixed": "#07006c",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline": "#727785",
+                        "canvas-white": "#FFFFFF",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "sidebar-width": "280px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter Tight"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter Tight"],
+                        "headline-lg-mobile": ["Inter Tight"],
+                        "label-sm": ["Inter"],
+                        "display-hero": ["Inter Tight"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-hero": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    },
+                    "boxShadow": {
+                        "ai-glow": "0 0 15px rgba(59, 130, 246, 0.3)",
+                        "glass": "0 4px 12px rgba(15, 23, 42, 0.05)"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .blueprint-canvas {
+            background-image: 
+                linear-gradient(to right, rgba(0, 88, 190, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 88, 190, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .ai-active-border {
+            box-shadow: 0 0 0 2px #0058be, 0 0 12px rgba(0, 88, 190, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width flex flex-col bg-sidebar-navy border-r border-outline-variant/10 z-50">
+<div class="flex flex-col h-full p-4 gap-2">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-canvas-white" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold tracking-tight text-canvas-white">ProEstimator AI</h1>
+<p class="font-label-sm text-label-sm text-secondary-fixed-dim">Agentic Precision v2.4</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="bg-white/10 backdrop-blur-md border border-white/20 text-canvas-white rounded-xl py-2 px-4 flex items-center gap-3 shadow-ai-glow" href="#">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+<span class="font-body-md">Project Takeoff</span>
+</a>
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Material Library</span>
+</a>
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span class="font-body-md">Cost Estimates</span>
+</a>
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-body-md">AI Insights</span>
+</a>
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<button class="w-full bg-primary py-3 rounded-xl text-canvas-white font-bold flex items-center justify-center gap-2 mb-6 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined">add</span>
+                New Estimate
+            </button>
+<div class="pt-4 border-t border-white/10 space-y-1">
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-sm">Help Center</span>
+</a>
+<a class="text-secondary-fixed-dim hover:text-canvas-white py-2 px-4 flex items-center gap-3 transition-colors hover:bg-white/5 rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-sm">Account</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="ml-[280px] flex-1 flex flex-col h-screen bg-canvas-white">
+<!-- Top Navigation -->
+<header class="h-16 flex justify-between items-center px-gutter border-b border-border-subtle bg-surface/80 backdrop-blur-xl z-40">
+<div class="flex items-center gap-6">
+<h2 class="font-headline-md text-headline-md font-black text-on-background">Takeoff Engine</h2>
+<nav class="hidden lg:flex gap-8">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Drawings</a>
+<a class="text-primary border-b-2 border-primary font-bold" href="#">Layers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors" href="#">Annotations</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2 mr-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+</div>
+<button class="px-4 py-2 border border-outline text-on-surface font-medium rounded-xl hover:bg-surface-container transition-colors">Invite</button>
+<button class="px-4 py-2 bg-primary text-on-primary font-bold rounded-xl shadow-sm hover:brightness-110 transition-all">Export</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdINiJiSxaxwL-Y2YNsHNOs2Zm_sZX3lGySw8Ra7qXqj56r6nUhplSlbyATbRux4QlS3GgNqawG_Wuh3A5sR__1crFMPRITNSjJfp5qzacPX43riLvJrqWcgxxzY4v_1WsFSS9I9b6yx-siFxZsqmv8mj2PgyQaBpO_8m6eppMP51HdBSN574RN7YSCMYJJAlz7gmtSJkobiPY-EaJmRu0FYdH8MMmP0kYFKo3cB8ghSl6aGxrIkR43EzaONGkqNxvfb3xf3-IRnc"/>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Blueprint Canvas Area -->
+<section class="flex-1 relative blueprint-canvas overflow-hidden flex flex-col">
+<!-- Toolbar Floating -->
+<div class="absolute top-4 left-4 flex flex-col gap-2 z-30">
+<div class="p-1 glass-panel rounded-xl flex flex-col gap-1 shadow-glass">
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg transition-colors"><span class="material-symbols-outlined">pan_tool</span></button>
+<button class="p-2 bg-primary text-on-primary rounded-lg shadow-sm"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg transition-colors"><span class="material-symbols-outlined">square_foot</span></button>
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container rounded-lg transition-colors"><span class="material-symbols-outlined">layers</span></button>
+</div>
+</div>
+<!-- Main Drawing Visualization -->
+<div class="flex-1 flex items-center justify-center p-12 bg-white">
+<div class="relative max-w-4xl w-full aspect-[4/3] bg-surface-container-lowest border border-outline-variant/30 rounded shadow-2xl overflow-hidden">
+<img alt="Technical architectural drawing" class="w-full h-full object-cover opacity-20 grayscale" data-alt="A highly detailed professional architectural floor plan showing complex structural details and room layouts. The drawing is rendered in a minimalist technical style with fine black lines on a clean white background, accented with subtle blue technical annotations. Soft daylight illuminates the blueprint, emphasizing its precision and professional nature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC56KepVhQRRVJfhVYdp5egQSz4wenFeCqAFeu6F26IwB1oR3vlO4KdKEp587vLRL-pBOwmcVq8OXKhjaSG6xSi7eO8hAUuf32hhRECSaLW4-62Q0xkqlr_1bZlkg423eJlYIslMFwGbhAIXO45YpFgSOM4qzkvc2NTIDQjZ8UWFnwqiFa7ts91eIjTI1CND_oK1mSCo-JklR1BEFNcdJWXSFGTIlkigciQfM2qDL3LEy7s91DePoMtj40qhM6iWsCoyqFOjFUKDd4"/>
+<!-- AI Highlighted Box (Corridor) -->
+<div class="absolute top-[40%] left-[30%] w-[35%] h-[15%] border-2 border-primary bg-primary/10 ai-active-border flex items-center justify-center">
+<div class="bg-primary text-white text-[10px] px-2 py-0.5 rounded absolute -top-3 left-2 font-bold tracking-widest">A-101 CORRIDOR</div>
+<div class="absolute -right-20 top-0 glass-panel p-2 rounded-lg text-xs font-medium flex items-center gap-2 border-primary/50">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                                AI Scanning...
+                            </div>
+</div>
+<!-- Technical Tags -->
+<div class="absolute top-20 right-20 space-y-3">
+<div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-bold border-l-4 border-l-error-red">
+<span>General Arrangement</span>
+<span class="bg-error-red/10 text-error-red px-1.5 rounded text-[10px]">DRAWING</span>
+</div>
+<div class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-bold border-l-4 border-l-primary">
+<span>Occupancy Legend</span>
+<span class="bg-primary/10 text-primary px-1.5 rounded text-[10px]">LEGEND</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Zoom/Pan Controls -->
+<div class="absolute bottom-4 left-4 glass-panel rounded-xl px-4 py-2 flex items-center gap-4 text-xs font-bold shadow-glass">
+<span class="text-on-surface-variant">74% SCALE</span>
+<div class="h-4 w-px bg-outline-variant"></div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined text-sm">remove</button>
+<button class="material-symbols-outlined text-sm">add</button>
+</div>
+</div>
+</section>
+<!-- AI Assistant Chat Side Panel -->
+<aside class="w-[400px] border-l border-border-subtle bg-surface-container-low/30 flex flex-col">
+<!-- Chat Header -->
+<div class="p-4 border-b border-border-subtle flex items-center justify-between bg-white/50 backdrop-blur-md">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-tertiary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-bold text-sm">Project Assistant</h3>
+<span class="text-[10px] text-success-green flex items-center gap-1 font-bold">
+<span class="w-1 h-1 rounded-full bg-success-green"></span> AGENT ACTIVE
+                            </span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-hide">
+<!-- User Message -->
+<div class="flex flex-col items-end">
+<div class="max-w-[85%] bg-primary text-white p-3 rounded-2xl rounded-tr-none text-sm shadow-sm">
+                            Identify and list all unique elements in the North Wing corridor.
+                        </div>
+<span class="text-[10px] text-on-surface-variant mt-1 px-1">10:42 AM</span>
+</div>
+<!-- AI Message -->
+<div class="flex flex-col items-start">
+<div class="max-w-[95%] glass-panel p-4 rounded-2xl rounded-tl-none text-sm shadow-sm space-y-3">
+<p class="leading-relaxed">I have analyzed the <span class="font-bold text-primary">North Wing Corridor</span> as specified in drawing <span class="bg-primary/10 text-primary px-1 rounded font-data-mono text-[11px]">[A-101]</span>. The following architectural components were identified:</p>
+<!-- AI Result Table -->
+<div class="rounded-xl border border-outline-variant overflow-hidden bg-white/50">
+<table class="w-full text-xs font-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-highest/50 border-b border-outline-variant">
+<th class="text-left p-2 font-bold">Element</th>
+<th class="text-right p-2 font-bold">Qty</th>
+<th class="text-center p-2 font-bold">ID</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-2 font-medium">Total Drywall (5/8")</td>
+<td class="p-2 text-right font-data-mono">1,420 SF</td>
+<td class="p-2 text-center text-primary"><span class="material-symbols-outlined text-sm">link</span></td>
+</tr>
+<tr class="bg-surface-container-low/20 hover:bg-primary/5 transition-colors">
+<td class="p-2 font-medium">Acoustic Tile Type B</td>
+<td class="p-2 text-right font-data-mono">840 SF</td>
+<td class="p-2 text-center text-primary"><span class="material-symbols-outlined text-sm">link</span></td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="p-2 font-medium">Hollow Metal Frame</td>
+<td class="p-2 text-right font-data-mono">12 EA</td>
+<td class="p-2 text-center text-primary"><span class="material-symbols-outlined text-sm">link</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="text-xs text-on-surface-variant italic">Ref: Submittal Package <span class="font-data-mono text-on-surface">[Item #142]</span> - Fire Safety Protocol compliant.</p>
+</div>
+<div class="flex items-center gap-2 mt-2 ml-1">
+<button class="text-xs font-bold text-primary flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm">history_edu</span> Generate Report
+                            </button>
+<span class="text-outline-variant text-[10px]">•</span>
+<button class="text-xs font-bold text-on-surface-variant hover:text-on-surface">Feedback</button>
+</div>
+</div>
+<!-- Typing Indicator (Subtle) -->
+<div class="flex items-center gap-2 p-2 bg-primary/5 rounded-full w-fit">
+<div class="flex gap-1 px-2">
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce"></div>
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce delay-75"></div>
+<div class="w-1 h-1 bg-primary rounded-full animate-bounce delay-150"></div>
+</div>
+<span class="text-[10px] font-bold text-primary pr-2">AGENT ANALYZING...</span>
+</div>
+</div>
+<!-- Chat Composer -->
+<div class="p-4 border-t border-border-subtle bg-white">
+<div class="relative glass-panel rounded-2xl border-outline-variant/50 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<!-- Toolbar for composer -->
+<div class="flex items-center gap-1 px-3 pt-2 border-b border-outline-variant/20 mb-2 pb-2">
+<button class="p-1 hover:bg-surface-container rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">attach_file</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+</button>
+<button class="p-1 hover:bg-surface-container rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">image</span>
+</button>
+<div class="ml-auto flex items-center gap-2">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">All Pages</span>
+<span class="material-symbols-outlined text-xs text-outline">expand_more</span>
+</div>
+</div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm p-3 resize-none h-24 placeholder:text-outline-variant" placeholder="Ask about materials, dimensions, or @mention team members..."></textarea>
+<div class="flex justify-between items-center p-2 pt-0">
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-highest text-primary hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<button class="bg-primary text-white p-2 rounded-xl flex items-center gap-2 px-4 font-bold shadow-ai-glow hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-sm">send</span>
+<span>Send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Contextual FAB (Only for Home/Dashboard/Major Takeoff) -->
+<div class="fixed bottom-8 right-[432px] z-50"> <!-- Positioned relative to sidebar and chat -->
+<button class="bg-gradient-to-tr from-primary to-tertiary text-white h-14 w-14 rounded-2xl flex items-center justify-center shadow-xl hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">add_chart</span>
+</button>
+</div>
+</body></html>
